@@ -1,0 +1,93 @@
+<odoo>
+    <record id="view_audit_log_tree" model="ir.ui.view">
+        <field name="name">audit.log.tree</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="operation_type=='unlink' or operation_type=='access_error'" 
+                  decoration-info="operation_type=='create'" 
+                  decoration-warning="operation_type=='connection_lost'"
+                  create="0" edit="0" delete="0">
+                <field name="create_date"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="model_id"/>
+                <field name="operation_type" widget="badge"/>
+                <field name="name"/>
+                <field name="ip_address" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_audit_log_form" model="ir.ui.view">
+        <field name="name">audit.log.form</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="operation_type"/></h1>
+                        <h3><field name="name"/></h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="create_date"/>
+                            <field name="ip_address"/>
+                        </group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="res_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detalles Técnicos">
+                            <group string="Valores Previos">
+                                <field name="old_values" nolabel="1" style="font-family: monospace; color: darkred;"/>
+                            </group>
+                            <group string="Nuevos Valores">
+                                <field name="new_values" nolabel="1" style="font-family: monospace; color: darkgreen;"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_audit_log_search" model="ir.ui.view">
+        <field name="name">audit.log.search</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <field name="model_id"/>
+                <field name="operation_type"/>
+                <filter string="Errores y Conexión" name="errors" domain="[('operation_type', 'in', ['connection_lost', 'access_error'])]"/>
+                <filter string="Hoy" name="today" domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="1" string="Agrupar Por">
+                    <filter string="Usuario" name="group_user" context="{'group_by':'user_id'}"/>
+                    <filter string="Modelo" name="group_model" context="{'group_by':'model_id'}"/>
+                    <filter string="Tipo Operación" name="group_op" context="{'group_by':'operation_type'}"/>
+                    <filter string="Fecha" name="group_date" context="{'group_by':'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_audit_log_graph" model="ir.ui.view">
+        <field name="name">audit.log.graph</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <graph string="Análisis de Auditoría" type="bar" stacked="True">
+                <field name="create_date" interval="day"/>
+                <field name="operation_type"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_audit_log" model="ir.actions.act_window">
+        <field name="name">Registro de Auditoría</field>
+        <field name="res_model">audit.log</field>
+        <field name="view_mode">graph,tree,form,pivot</field>
+        <field name="context">{'search_default_today': 1}</field>
+    </record>
+</odoo>

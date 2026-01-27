@@ -48,34 +48,22 @@ class AccountMoveLine(models.Model):
 
     @api.depends('currency_id', 'company_id', 'move_id.date','move_id.tax_today')
     def _compute_currency_rate(self):
-        # Mantener el comportamiento estándar de Odoo y solo ajustar cuando corresponde.
-        super(AccountMoveLine, self)._compute_currency_rate()
+
+        @lru_cache()
+        def get_rate(from_currency, to_currency, company, date):
+            rate = self.env['res.currency']._get_conversion_rate(
+                from_currency=from_currency,
+                to_currency=to_currency,
+                company=company,
+                date=date,
+            )
+            return rate
 
         for line in self:
-            if not line.company_id or not line.currency_id:
-                continue
-
-            company_currency = line.company_id.currency_id
-
-            # Si la línea está en moneda de compañía (Bs), la tasa debe ser 1.
-            if line.currency_id == company_currency:
-                line.currency_rate = 1.0
-                continue
-
-            # Si la línea está en moneda de referencia (USD) y hay `tax_today`, fijar la tasa.
-            if line.move_id and line.currency_id == line.move_id.currency_id_dif and line.move_id.tax_today and line.move_id.tax_today > 0:
-                # currency_rate = cantidad de moneda extranjera por 1 unidad de moneda compañía.
-                line.currency_rate = 1.0 / line.move_id.tax_today
-
-            _logger.info(
-                "[DUAL] _compute_currency_rate LINE %s: tax_today=%s, rate=%s, move=%s, line_cur=%s, comp_cur=%s",
-                line.id,
-                line.move_id.tax_today if line.move_id else None,
-                line.currency_rate,
-                line.move_id.id if line.move_id else None,
-                line.currency_id.name,
-                company_currency.name,
-            )
+            self.env.context = dict(self.env.context, tasa_factura=line.move_id.tax_today, calcular_dual_currency=True)
+            line.currency_rate = 1 / line.move_id.tax_today if line.move_id.tax_today > 0 else 1
+            
+        self.env.context = dict(self.env.context, tasa_factura=None, calcular_dual_currency=False)
 
     @api.onchange('amount_currency')
     def _onchange_amount_currency(self):
@@ -84,13 +72,8 @@ class AccountMoveLine(models.Model):
 
     def write(self, vals):
         """Override write para sincronizar price_unit y ref_unit al guardar (2 decimales)"""
-        # _logger.info("[DUAL] AccountMoveLine write(): IDs=%s, vals=%s", self.ids, vals.keys())
-        # Uncomment above to trace writes
         result = super(AccountMoveLine, self).write(vals)
         
-        if self.env.context.get('skip_usd_recompute'):
-            return result
-
         # Después de guardar, recalcular los campos según lo que se modificó
         for line in self:
             if line.display_type in ('line_section', 'line_note'):
@@ -109,15 +92,13 @@ class AccountMoveLine(models.Model):
                     values_to_update['ref_unit'] = 0.0
             
             # Si se modificó ref_unit, recalcular price_unit y subtotal_ref
-            # 2025-12-09: DESHABILITADO POR SOLICITUD DEL CLIENTE
-            # Se requiere que los montos en Bs (Master) NO sean afectados por cambios en Ref/USD.
-            # elif 'ref_unit' in vals:
-            #     if tax_today > 0:
-            #         # Calcular con 2 decimales
-            #         price_unit_calculated = round(line.ref_unit * tax_today, 2)
-            #         values_to_update['price_unit'] = price_unit_calculated
-            #     else:
-            #         values_to_update['price_unit'] = 0.0
+            elif 'ref_unit' in vals:
+                if tax_today > 0:
+                    # Calcular con 2 decimales
+                    price_unit_calculated = round(line.ref_unit * tax_today, 2)
+                    values_to_update['price_unit'] = price_unit_calculated
+                else:
+                    values_to_update['price_unit'] = 0.0
             
             # Siempre recalcular subtotal_ref si cambió ref_unit o quantity
             if 'ref_unit' in vals or 'quantity' in vals or 'price_unit' in vals:
@@ -151,12 +132,11 @@ class AccountMoveLine(models.Model):
                         vals['ref_unit'] = 0.0
                 
                 # Si se proporciona ref_unit pero no price_unit, calcular price_unit con 2 decimales
-                # 2025-12-09: DESHABILITADO POR SOLICITUD DEL CLIENTE
-                # elif 'ref_unit' in vals and 'price_unit' not in vals:
-                #     if tax_today > 0:
-                #         vals['price_unit'] = round(vals['ref_unit'] * tax_today, 2)
-                #     else:
-                #         vals['price_unit'] = 0.0
+                elif 'ref_unit' in vals and 'price_unit' not in vals:
+                    if tax_today > 0:
+                        vals['price_unit'] = round(vals['ref_unit'] * tax_today, 2)
+                    else:
+                        vals['price_unit'] = 0.0
                 
                 # Calcular subtotal_ref con 2 decimales
                 quantity = vals.get('quantity', 1.0)

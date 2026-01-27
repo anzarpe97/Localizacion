@@ -448,7 +448,6 @@ class AccountMove(models.Model):
                 'line_ids': lines,
                 'journal_id': pay_journal_id,
                 'date': date,
-                'invoice_date': invoice.invoice_date,
                 'state': 'draft',
                 'type_name': 'entry'
                 }

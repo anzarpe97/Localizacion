@@ -104,10 +104,9 @@ class AccountMove(models.Model):
                 raise UserError(_("Debe configurar la 'Cuenta de Gasto por IGTF' en los ajustes de contabilidad para pagos."))
 
         # La cuenta de contrapartida (banco/caja desde donde sale el dinero del IGTF)
-        # Usamos la cuenta de Pagos Pendientes (Outstanding Payments) de la compañía
-        bank_account = self.company_id.account_journal_payment_credit_account_id
+        bank_account = journal.default_account_id
         if not bank_account:
-            raise UserError(_("La compañía no tiene una 'Cuenta de Pagos Pendientes' configurada."))
+            raise UserError(_("El diario '%s' no tiene una cuenta de contrapartida por defecto configurada.") % journal.name)
 
         # 3. Preparar los valores del asiento contable
         move_vals = {

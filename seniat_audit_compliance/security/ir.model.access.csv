@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_audit_log_user,audit.log.user,model_audit_log,base.group_user,1,0,0,0
-access_audit_log_manager,audit.log.manager,model_audit_log,base.group_system,1,0,0,1
-access_audit_log_seniat,audit.log.seniat,model_audit_log,group_seniat_audit,1,0,0,0
-access_audit_rule_manager,audit.rule.manager,model_audit_rule,base.group_system,1,1,1,1

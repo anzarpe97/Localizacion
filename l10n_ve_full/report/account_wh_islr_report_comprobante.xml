@@ -13,7 +13,7 @@
                             </td>
                             <td style="width:10%;text-align:center;">
                                 <p style="font-size:18px;color:red; text-align:left;">
-                                    Comprobante de Retención de ISLR <span style="color:black;" t-esc="d.number"/>
+                                    Comprobante de Retención de ISLR
                                 </p>
                             </td>
                         </tr>

@@ -395,6 +395,24 @@ class AccountMove(models.Model):
                     # y no tenemos price_unit_usd para recalcular.
                     l.price_unit = l.price_unit 
             else:
+                # Si cambiamos a una moneda extranjera (ej. EUR), buscamos su tasa más reciente
+                # y actualizamos la Tasa de la factura (tax_today) y la Moneda de Referencia (currency_id_dif)
+                fecha = rec.invoice_date or fields.Date.today()
+                
+                # Buscar la tasa inversa (VEF/Unit) para la fecha
+                tasa_obj = self.env['res.currency.rate'].search([
+                    ('currency_id', '=', rec.currency_id.id),
+                    ('name', '<=', fecha),
+                    ('company_id', '=', rec.company_id.id)
+                ], order='name desc', limit=1)
+                
+                if tasa_obj:
+                    # Actualizamos la tasa de cambio de la factura con la encontrada
+                    rec.tax_today = tasa_obj.inverse_company_rate
+                    # Establecemos la moneda de referencia como la misma de la factura (ej. EUR)
+                    # para que los cálculos duales se alineen con esta moneda.
+                    rec.currency_id_dif = rec.currency_id
+
                 for l in rec.invoice_line_ids:
                     l.currency_id = rec.currency_id
                     l.price_unit = l.price_unit # Mantener el precio actual

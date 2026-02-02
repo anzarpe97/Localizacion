@@ -5,10 +5,7 @@
     'author': 'Aecas',
     'category': 'Accounting',
     'depends': ['base'],
-    'data': [
-        'data/ir_cron_data.xml',
-        'views/res_currency_view.xml',
-    ],
+    'data': ['data/ir_cron_data.xml'],
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -11,5 +11,25 @@
             <field eval="True" name="company_id"/>
             <field name="padding">8</field>
         </record>
+        <record id="sequence_withholding_islr_doc_in_refund_company_2" model="ir.sequence">
+            <field name="name">sequence withholding islr doc in refund CORPORACION COE</field>
+            <field name="code">account.wh.islr.doc.in_refund</field>
+            <field name="prefix"></field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="use_date_range"/>
+            <field eval="2" name="company_id"/>
+            <field name="padding">8</field>
+        </record>
+        <record id="sequence_withholding_islr_doc_in_refund_company_3" model="ir.sequence">
+            <field name="name">sequence withholding islr doc in refund STC SOLUCIONES TECNOLOGICA</field>
+            <field name="code">account.wh.islr.doc.in_refund</field>
+            <field name="prefix"></field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="use_date_range"/>
+            <field eval="3" name="company_id"/>
+            <field name="padding">8</field>
+        </record>
     </data>
 </odoo>

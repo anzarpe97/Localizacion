@@ -1047,7 +1047,7 @@ class FiscalBookWizard(models.TransientModel):
                         h_vat_general_rate = round(h_vat_general_rate, 0)
                         h_vat_general_tax = h.vat_general_tax if h.vat_general_tax else 0.0
                         vat_reduced_base = h.vat_reduced_base
-                        vat_reduced_rate = int(round(h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base, 0))
+                        vat_reduced_rate = int(h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base)
                         vat_reduced_tax = h.vat_reduced_tax
                         vat_additional_base = h.vat_additional_base
                         vat_additional_rate = int(
@@ -1087,7 +1087,7 @@ class FiscalBookWizard(models.TransientModel):
                         h_vat_general_rate = round(h_vat_general_rate, 0)
                         h_vat_general_tax = h.vat_general_tax if h.vat_general_tax else 0.0
                         vat_reduced_base = h.vat_reduced_base
-                        vat_reduced_rate = int(round(h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base, 0))
+                        vat_reduced_rate = int(h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base)
                         vat_reduced_tax = h.vat_reduced_tax
                         vat_additional_base = h.vat_additional_base
                         vat_additional_rate = int(
@@ -1151,13 +1151,13 @@ class FiscalBookWizard(models.TransientModel):
                     vat_general_tax_importaciones = h.vat_general_tax
                     'ALICUOTA REDUCIDA IMPORTACIONES'
                     vat_reduced_base_importaciones = h.vat_reduced_base
-                    vat_reduced_rate_importaciones = int(round(
-                        h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base, 0))
+                    vat_reduced_rate_importaciones = int(
+                        h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base)
                     vat_reduced_tax_importaciones = h.vat_reduced_tax
                     'ALICUOTA ADICIONAL IMPORTACIONES'
                     vat_additional_base_importaciones = h.vat_additional_base
-                    vat_additional_rate_importaciones = int(round(
-                        h.vat_additional_base and h.vat_additional_tax * 100 / h.vat_additional_base, 0))
+                    vat_additional_rate_importaciones = int(
+                        h.vat_additional_base and h.vat_additional_tax * 100 / h.vat_additional_base)
                     vat_additional_tax_importaciones = h.vat_additional_tax
                     'Suma total compras con IVA'
                     sum_total_with_iva = (
@@ -1784,13 +1784,13 @@ class PurchaseBook(models.AbstractModel):
                 vat_general_tax_importaciones = h.vat_general_tax
                 'ALICUOTA REDUCIDA IMPORTACIONES'
                 vat_reduced_base_importaciones = h.vat_reduced_base
-                vat_reduced_rate_importaciones = int(round(
-                    h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base, 0))
+                vat_reduced_rate_importaciones = int(
+                    h.vat_reduced_base and h.vat_reduced_tax * 100 / h.vat_reduced_base)
                 vat_reduced_tax_importaciones = h.vat_reduced_tax
                 'ALICUOTA ADICIONAL IMPORTACIONES'
                 vat_additional_base_importaciones = h.vat_additional_base
-                vat_additional_rate_importaciones = int(round(
-                    h.vat_additional_base and h.vat_additional_tax * 100 / h.vat_additional_base, 0))
+                vat_additional_rate_importaciones = int(
+                    h.vat_additional_base and h.vat_additional_tax * 100 / h.vat_additional_base)
                 vat_additional_tax_importaciones = h.vat_additional_tax
                 'Suma total compras con IVA'
                 sum_total_with_iva = (

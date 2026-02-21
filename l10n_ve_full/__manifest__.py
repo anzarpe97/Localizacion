@@ -69,6 +69,3 @@
     "currency": "USD",
     "post_init_hook": "post_init_hook",
 }
-
-
-#PRUEBAS

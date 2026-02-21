@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Acción del Reporte FAOV -->
+        <record id="action_l10n_ve_payroll_usd_report_faov" model="ir.actions.client">
+            <field name="name">Aportes y Retenciones FAOV</field>
+            <field name="tag">account_report</field>
+            <field name="params">{'report_id': 'l10n_ve_payroll_usd.l10n_ve_payroll_report_faov'}</field>
+        </record>
+
+        <!-- Menú agrupador bajo menú "Nómina / Reportes" -->
+       <menuitem id="menu_l10n_ve_payroll_usd_reports_group"
+                name="Informes de Venezuela"
+                parent="hr_payroll.menu_hr_payroll_report"
+                sequence="60"/>
+
+        <!-- Entrada del reporte FAOV -->
+        <menuitem id="menu_l10n_ve_payroll_usd_report_faov"
+                  name="Aportes y Retenciones FAOV"
+                  parent="menu_l10n_ve_payroll_usd_reports_group"
+                  action="action_l10n_ve_payroll_usd_report_faov"
+                  sequence="10"/>
+
+        <!-- Formato personalizado para PDF (Préstamos) -->
+        <record id="paperformat_employee_loan" model="report.paperformat">
+            <field name="name">Employee Loan A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">53</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- Acción de Reporte de Préstamos -->
+        <record id="action_employee_loan_report" model="ir.actions.report">
+            <field name="name">Loan Report</field>
+            <field name="model">hr.employee.loan</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_ve_payroll_usd.employee_loan_template</field>
+            <field name="report_file">l10n_ve_payroll_usd.employee_loan_template</field>
+            <field name="binding_model_id" ref="l10n_ve_payroll_usd.model_hr_employee_loan"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_employee_loan"/>
+        </record>
+
+    </data>
+</odoo>

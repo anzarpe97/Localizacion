@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Vista tipo lista (tree) -->
+        <record id="view_hr_prestaciones_interes_tree" model="ir.ui.view">
+            <field name="name">hr.prestaciones.interes.tree</field>
+            <field name="model">hr.prestaciones.interes</field>
+            <field name="arch" type="xml">
+                <tree string="Tasas de Interés para Prestaciones">
+                    <field name="fecha_vigencia"/>
+                    <field name="tasa_interes"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista tipo formulario (form) -->
+        <record id="view_hr_prestaciones_interes_form" model="ir.ui.view">
+            <field name="name">hr.prestaciones.interes.form</field>
+            <field name="model">hr.prestaciones.interes</field>
+            <field name="arch" type="xml">
+                <form string="Tasa de Interés">
+                    <sheet>
+                        <group>
+                            <field name="fecha_vigencia"/>
+                            <field name="tasa_interes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para mostrar la vista -->
+        <record id="action_hr_prestaciones_interes" model="ir.actions.act_window">
+            <field name="name">Tasas de Interés</field>
+            <field name="res_model">hr.prestaciones.interes</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menú para acceder desde Nómina -->
+        <menuitem id="menu_hr_prestaciones_interes"
+                  name="Tasas de Interés"
+                  parent="menu_l10n_ve_payroll_usd_reports_group"
+                  action="action_hr_prestaciones_interes"
+                  sequence="42"/>
+
+    </data>
+</odoo>

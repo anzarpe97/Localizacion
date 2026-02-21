@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hr_payslip_form_inherit_views_lunes" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit.views.lunes</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_from']" position="attributes">
+                <attribute name="readonly">context.get('payslip_run_id', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_to']" position="attributes">
+                <attribute name="readonly">context.get('payslip_run_id', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_id']" position="after">
+                <field name="pestaciones_id" force_save="1" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='payslip_run_id']/.." position="after">
+                <group col="4">
+                    <group col="2">
+                        <field name="tasa_cambio" force_save="1"/>
+                    </group>
+                    <group col="2">
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/tree/field[@name='work_entry_type_id']" position="attributes">
+                <attribute name="modifiers">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/tree/field[@name='amount']" position="attributes">
+                <attribute name="modifiers">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='input_line_ids']/tree/field[@name='input_type_id']" position="attributes">
+                <attribute name="modifiers">{'no_create': True, 'no_quick_create': True, 'no_create_edit': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/tree/field[@name='name']" position="after">
+                <field name="code"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='amount']" position="attributes">
+                <attribute name="modifiers">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='quantity']" position="after">
+                <field name="dias"/>
+                <field name="horas"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='quantity']" position="attributes">
+                <attribute name="modifiers">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='total']" position="after">
+                <field name="currency_id_dif" invisible="1"/>
+                <field name="total_ref"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='rate']" position="attributes">
+                <attribute name="modifiers">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='note']/.." position="before">
+                <group name="apuntes" string="Apuntes Contables" colspan="4">
+                    <field name="apuntes_contables" nolabel="1" colspan="2"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='account_info']" position="after">
+                <page string="Variables Extras">
+                    <group>
+                        <group>
+                            <field name="lunes_mes"/>
+                            <field name="lunes_periodo"/>
+                            <field name="wage"/>
+                            <field name="wage_ref"/>
+                        </group>
+                        <group>
+                            <field name="wage_diario"/>
+                            <field name="wage_diario_ref"/>
+                            <field name="complemento"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Prestamos">
+                            <field name="installment_ids" widget="many2many_tags" modifiers="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="installment_amount" modifiers="{'invisible': [('installment_ids', '=', False)]}"/>
+                            <field name="installment_int" modifiers="{'invisible': [('installment_ids', '=', False)]}"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Firma">
+                    <group>
+                        <group>
+                            <field name="sign_request_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='input_line_ids']/tree/field[@name='input_type_id']" position="after">
+                <field name="code" string="Código"/>
+            </xpath>
+            <xpath expr="//field[@name='credit_note']" position="after"/>
+            <xpath expr="//header" position="inside">
+                <button name="send_to_sign" type="object" string="Enviar para Firma" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

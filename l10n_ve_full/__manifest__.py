@@ -3,9 +3,9 @@
     'name': "Venezuela: Localización Completa",
 
     'summary': """
-        Localización Venezolana""",
+        Localización Venezolana....""",
     'description': """
-        Localización completa para Venezuela
+        Localización completa para Venezuela...
 
     """,
     'author': 'Devs by Contables',

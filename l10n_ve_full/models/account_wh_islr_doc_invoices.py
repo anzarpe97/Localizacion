@@ -545,9 +545,10 @@ class AccountWhIslrDocInvoices(models.Model):
                 valor = 0.0034
             else:
                 valor = 0
-            rate_brw_minimum = float(ut_obj.amount *(islr_rate_ids.minimum + valor)* (islr_rate_ids.wh_perc/100))
+            rate_brw_minimum = float(ut_obj.amount *(islr_rate_ids.minimum + valor))
             rate_brw_minimum = round(rate_brw_minimum, 2)
-            rate_brw_subtract =   float(ut_obj.amount * islr_rate_ids.subtract * (islr_rate_ids.wh_perc/100))
+            # El campo subtract está en UT, multiplicar por el valor de la UT para convertir a Bs
+            rate_brw_subtract = float(islr_rate_ids.subtract * ut_obj.amount)
             rate_brw_subtract = round(rate_brw_subtract, 2)
         else:
             rate2 = {
@@ -589,9 +590,10 @@ class AccountWhIslrDocInvoices(models.Model):
                     valor = 0.0034
                 else:
                     valor = 0
-                rate_brw_minimum =  float(ut_obj.amount * (islr_rate_ids.minimum + valor) * (islr_rate_ids.wh_perc/100))
+                rate_brw_minimum =  float(ut_obj.amount * (islr_rate_ids.minimum + valor))
                 rate_brw_minimum = round(rate_brw_minimum, 2)
-                rate_brw_subtract =  float(ut_obj.amount * islr_rate_ids.subtract * (islr_rate_ids.wh_perc/100))
+                # El campo subtract está en UT, multiplicar por el valor de la UT para convertir a Bs
+                rate_brw_subtract = float(islr_rate_ids.subtract * ut_obj.amount)
                 rate_brw_subtract = round(rate_brw_subtract, 2)
                 found_rate = True
                 rate2['subtrahend'] = rate_brw.subtract
@@ -599,10 +601,9 @@ class AccountWhIslrDocInvoices(models.Model):
             if not found_rate:
                 msg += _(' Para unidades impositivas mayores que cero')
                 raise UserError(_('Falta la configuración'), msg)
+        # Retornar sustraendo para ambos tipos de persona (Natural y Jurídica)
         return (islr_rate_ids.base, rate_brw_minimum, islr_rate_ids.wh_perc,
                 rate_brw_subtract, islr_rate_ids.code, islr_rate_ids.id, islr_rate_ids.name,
-                rate2) if msg_nature == 'Natural' else (islr_rate_ids.base, 0, islr_rate_ids.wh_perc,
-                0, islr_rate_ids.code, islr_rate_ids.id, islr_rate_ids.name,
                 rate2)
 
     def _get_country_fiscal(self, partner_id):

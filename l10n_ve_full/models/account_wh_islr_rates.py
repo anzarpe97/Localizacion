@@ -28,9 +28,9 @@ class AccountWhIslrRates(models.Model):
     subtract= fields.Float(
             'Sustracción en unidades impositivas', required=True,
             digits=(16, 2),
-            help="Cantidad a restar de la cantidad total a retener "
-                 "Cantidad Porcentaje de retención ..... Este sustraendo solamente"
-                 "aplicado la primera vez que realiza una retención", compute='_subtract')
+            help="Cantidad a restar de la cantidad total a retener en UT. "
+                 "Este sustraendo se multiplicará por el valor de la UT actual para obtener el monto en Bs",
+            default=0.0)
     residence= fields.Boolean(
             'Residencia',
             help="Indica si una persona es residente, en comparación con la "
@@ -62,18 +62,58 @@ class AccountWhIslrRates(models.Model):
                         'No Domiciliada'
             res[rate.id] = name
         return res
-
-    def _subtract(self):
+    
+    @api.onchange('minimum', 'name', 'wh_perc')
+    def _onchange_minimum(self):
+        """Actualiza el subtract cuando cambia el minimum o wh_perc"""
+        if self.name == 'PJDO':
+            # Para PJDO, el sustraendo generalmente es 0 o debe configurarse manualmente
+            self.subtract = 0
+        else:
+            # Para PNRE y otros, el sustraendo en UT = minimum × (wh_perc / 100)
+            if self.minimum > 0 and self.wh_perc > 0:
+                self.subtract = self.minimum * (self.wh_perc / 100.0)
+            else:
+                self.subtract = 0
+    
+    def action_recalculate_subtract(self):
+        """Método para recalcular el subtract de registros existentes"""
         for rec in self:
             if rec.name == 'PJDO':
                 rec.subtract = 0
             else:
-                if rec.minimum > 0:
-                    # busca ultima unidad tributaria
-                    ut = self.env['account.ut'].search([], limit=1, order='date desc')
-                    if ut:
-                        rec.subtract = rec.minimum * ut.amount * (rec.wh_perc / 100)
-                    else:
-                        rec.subtract = 0
+                if rec.minimum > 0 and rec.wh_perc > 0:
+                    rec.subtract = rec.minimum * (rec.wh_perc / 100.0)
                 else:
                     rec.subtract = 0
+    
+    @api.model
+    def recalculate_all_subtracts(self):
+        """Método para recalcular todos los subtracts de todos los registros"""
+        all_rates = self.search([])
+        for rate in all_rates:
+            if rate.name == 'PJDO':
+                rate.subtract = 0
+            else:
+                if rate.minimum > 0 and rate.wh_perc > 0:
+                    rate.subtract = rate.minimum * (rate.wh_perc / 100.0)
+                else:
+                    rate.subtract = 0
+        return True
+    
+    @api.model
+    def create(self, vals):
+        """Al crear un nuevo registro, calcular el subtract si no se proporciona"""
+        if 'subtract' not in vals or vals.get('subtract', 0) == 0:
+            # Calcular subtract basado en minimum y name
+            name = vals.get('name', '')
+            if name == 'PJDO':
+                vals['subtract'] = 0
+            else:
+                minimum = vals.get('minimum', 0)
+                wh_perc = vals.get('wh_perc', 0)
+                if minimum > 0 and wh_perc > 0:
+                    vals['subtract'] = minimum * (wh_perc / 100.0)
+                else:
+                    vals['subtract'] = 0
+        return super(AccountWhIslrRates, self).create(vals)

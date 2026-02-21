@@ -1,6 +1,6 @@
 # coding: utf-8
 import time
-from odoo import fields, models
+from odoo import fields, models, api
 
 class AccountUT(models.Model):
     _name = 'account.ut'
@@ -66,3 +66,19 @@ class AccountUT(models.Model):
         def _xc(from_amount):
             return self.exchange(from_amount, from_currency_id, to_currency_id, exchange_date)
         return _xc
+
+    @api.model
+    def create(self, vals):
+        """Al crear una nueva UT, recalcular todos los sustraendos"""
+        rec = super(AccountUT, self).create(vals)
+        # Recalcular todos los sustraendos después de crear la UT
+        self.env['account.wh.islr.rates'].recalculate_all_subtracts()
+        return rec
+
+    def write(self, vals):
+        """Al modificar una UT, recalcular todos los sustraendos si cambió el monto"""
+        res = super(AccountUT, self).write(vals)
+        # Si cambió el monto de la UT, recalcular todos los sustraendos
+        if 'amount' in vals:
+            self.env['account.wh.islr.rates'].recalculate_all_subtracts()
+        return res

@@ -90,11 +90,18 @@ class AccountWhIvaLine(models.Model):
         partner = self.env['res.partner']
         for rec in self:
             if rec.invoice_id:
-                rate = rec.retention_id.type in [('out_invoice','out_refund', 'out_debit')] and \
-                    partner._find_accounting_partner(
-                        rec.invoice_id.company_id.partner_id).wh_iva_rate or \
-                    partner._find_accounting_partner(
-                        rec.invoice_id.partner_id).wh_iva_rate
+                # Para facturas de cliente: buscar contacto hijo de la compañía
+                if rec.retention_id.type in ('out_invoice', 'out_refund', 'out_debit'):
+                    # Buscar contactos hijos de MI COMPAÑÍA con wh_iva_rate configurado
+                    company_contact = self.env['res.partner'].search([
+                        ('parent_id', '=', rec.invoice_id.company_id.partner_id.id),
+                        ('wh_iva_rate', '>', 0)
+                    ], limit=1)
+                    rate = company_contact.wh_iva_rate if company_contact else rec.invoice_id.company_id.partner_id.wh_iva_rate
+                else:
+                    # Para facturas de proveedor: usar el rate del proveedor
+                    rate = partner._find_accounting_partner(rec.invoice_id.partner_id).wh_iva_rate
+                    
                 rec.write({'wh_iva_rate': rate})
 
                 #crear el id en las lineas

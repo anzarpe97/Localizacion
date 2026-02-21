@@ -535,12 +535,35 @@ class AccountMove(models.Model):
         values = {}
         type_invoice = ''
         for inv_brw in self:
-            wh_iva_rate = (
-                inv_brw.move_type in ('in_invoice', 'in_refund', 'out_refund', 'out_invoice') and
-                partner._find_accounting_partner(
-                    inv_brw.partner_id).wh_iva_rate or
-                partner._find_accounting_partner(
-                    inv_brw.company_id.partner_id).wh_iva_rate)
+            # Para facturas de cliente (out_invoice, out_refund): el cliente hace retención a mi compañía
+            # Buscar si MI COMPAÑÍA tiene contactos hijos y usar su wh_iva_rate
+            if inv_brw.move_type in ('out_invoice', 'out_refund'):
+                # Buscar directamente contactos hijos de mi compañía
+                company_contact = self.env['res.partner'].search([
+                    ('parent_id', '=', inv_brw.company_id.partner_id.id),
+                    ('wh_iva_rate', '>', 0)  # Que tenga un wh_iva_rate definido
+                ], limit=1)
+                
+                # Usar el wh_iva_rate del contacto hijo si existe, sino el de la compañía principal
+                wh_iva_rate = company_contact.wh_iva_rate if company_contact else inv_brw.company_id.partner_id.wh_iva_rate
+                
+            # Para facturas de proveedor (in_invoice, in_refund): mi compañía hace retención al proveedor
+            # Buscar contacto del proveedor relacionado con mi compañía
+            elif inv_brw.move_type in ('in_invoice', 'in_refund'):
+                acc_partner_proveedor = partner._find_accounting_partner(inv_brw.partner_id)
+                
+                # Buscar contacto del proveedor relacionado con mi compañía
+                related_contact = self.env['res.partner'].search([
+                    ('parent_id', '=', acc_partner_proveedor.id),
+                    ('company_id', '=', inv_brw.company_id.id)
+                ], limit=1)
+                
+                # Usar el wh_iva_rate del contacto si existe, sino el del proveedor principal
+                wh_iva_rate = related_contact.wh_iva_rate if related_contact else acc_partner_proveedor.wh_iva_rate
+            else:
+                # Caso por defecto
+                wh_iva_rate = partner._find_accounting_partner(inv_brw.partner_id).wh_iva_rate
+                
             if inv_brw.move_type in ('in_invoice', 'out_invoice', 'out_refund', 'in_refund'):
                 if inv_brw.debit_origin_id and inv_brw.move_type == 'out_invoice':
                     type_invoice = 'out_debit'

@@ -45,6 +45,7 @@
         'report/account_wh_islr_list.xml',
         'views/product_product.xml',
         'data/decimal_precision.xml',
+        'data/ir_cron_data.xml',
         'data/account_wh_islr_doc_sequence.xml',
         #'data/account_wh_islr_doc_sequence_refund.xml',
         'report/account_wh_islr_report_comprobante.xml',
@@ -66,4 +67,5 @@
     "license": "GPL-2",
     "price": 3500,
     "currency": "USD",
+    "post_init_hook": "post_init_hook",
 }

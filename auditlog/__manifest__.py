@@ -1,4 +1,4 @@
-# Copyright 2015 ABF OSIELL <https://osiell.com>
+# Copyright 2015 ABF OSIELL <https://osiell.com> estyo es uncomentario
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {

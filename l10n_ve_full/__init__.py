@@ -11,6 +11,3 @@ def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
     # Recalcular todos los sustraendos
     env['account.wh.islr.rates'].recalculate_all_subtracts()
-
-
-    #prueba

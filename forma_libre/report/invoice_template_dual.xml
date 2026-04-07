@@ -19,7 +19,9 @@
                                 <td style="width: 50%; vertical-align: top; padding-right: 10px; font-size: 9px;">
                                     <p><strong>Cliente:</strong> <t t-esc="doc.partner_id.name or ''"/></p>
                                     <p><strong>R.I.F:</strong> <t t-esc="doc.partner_id.vat or ''"/></p>
-                                    <p><strong>DOMICILIO FISCAL:</strong> <t t-esc="doc.partner_id.contact_address or ''"/></p>
+                                    <p><strong>DOMICILIO FISCAL:</strong>
+                                        <t t-esc="(doc.partner_id.contact_address or '')[len(doc.partner_id.name):].lstrip(' ,') if doc.partner_id.name and (doc.partner_id.contact_address or '').startswith(doc.partner_id.name) else (doc.partner_id.contact_address or '')"/>
+                                    </p>
                                     <p><strong>E-MAIL:</strong> <t t-esc="doc.partner_id.email or ''"/></p>
                                     <p><strong>TELÉFONO:</strong> <t t-esc="doc.partner_id.phone or ''"/></p>
                                 </td>

@@ -37,21 +37,21 @@ class AccountWhIslrDocInvoices(models.Model):
             #    res[ret_line.id]['currency_base_ret'] += f_xc(line.base_amount)
             iwdl_local = self.env['account.wh.islr.doc.line'].search([('islr_wh_doc_id', '=', ret_line.islr_wh_doc_id.id)])
             for line in iwdl_local:
-                res[ret_line.id]['amount_islr_ret'] += (line.base_amount * line.retencion_islr / 100) - line.subtract
+                res[ret_line.id]['amount_islr_ret'] += line.amount
                 res[ret_line.id]['base_ret'] += line.base_amount
                 if ret_line.invoice_id.currency_id == ret_line.invoice_id.company_id.currency_id:
-                    res[ret_line.id]['currency_amount_islr_ret'] += f_xc(line.base_amount * line.retencion_islr / 100)
+                    res[ret_line.id]['currency_amount_islr_ret'] += f_xc(line.amount)
                     res[ret_line.id]['currency_base_ret'] += f_xc(line.base_amount)
                 else:
                     module_dual_currency = self.env['ir.module.module'].sudo().search(
                         [('name', '=', 'account_dual_currency'), ('state', '=', 'installed')])
                     if module_dual_currency:
                         res[ret_line.id]['currency_amount_islr_ret'] += (
-                            line.base_amount * line.retencion_islr / 100) * ret_line.invoice_id.tax_today
+                            line.amount) * ret_line.invoice_id.tax_today
                         res[ret_line.id]['currency_base_ret'] += (line.base_amount) * ret_line.invoice_id.tax_today
                     else:
                         res[ret_line.id]['currency_amount_islr_ret'] += f_xc(
-                            line.base_amount * line.retencion_islr / 100)
+                            line.amount)
                         res[ret_line.id]['currency_base_ret'] += f_xc(line.base_amount)
         return res
 
@@ -111,20 +111,20 @@ class AccountWhIslrDocInvoices(models.Model):
             }
             iwdl_local = self.env['account.wh.islr.doc.line'].search([('islr_wh_doc_id', '=', ret_line.islr_wh_doc_id.id)])
             for line in iwdl_local:
-                res[ret_line.id]['amount_islr_ret'] += (line.base_amount * line.retencion_islr / 100) - line.subtract
+                res[ret_line.id]['amount_islr_ret'] += line.amount
                 res[ret_line.id]['base_ret'] += line.base_amount
                 if ret_line.invoice_id.currency_id == ret_line.invoice_id.company_id.currency_id:
-                    res[ret_line.id]['currency_amount_islr_ret'] += f_xc(line.base_amount * line.retencion_islr / 100)
+                    res[ret_line.id]['currency_amount_islr_ret'] += f_xc(line.amount)
                     res[ret_line.id]['currency_base_ret'] += f_xc(line.base_amount)
                 else:
                     module_dual_currency = self.env['ir.module.module'].sudo().search(
                         [('name', '=', 'account_dual_currency'), ('state', '=', 'installed')])
                     if module_dual_currency:
-                        res[ret_line.id]['currency_amount_islr_ret'] += (line.base_amount * line.retencion_islr / 100) * ret_line.invoice_id.tax_today
+                        res[ret_line.id]['currency_amount_islr_ret'] += (line.amount) * ret_line.invoice_id.tax_today
                         res[ret_line.id]['currency_base_ret'] += line.base_amount * ret_line.invoice_id.tax_today
                     else:
                         res[ret_line.id]['currency_amount_islr_ret'] += f_xc(
-                            line.base_amount * line.retencion_islr / 100)
+                            line.amount)
                         res[ret_line.id]['currency_base_ret'] += f_xc(line.base_amount)
                 res[ret_line.id]['iwdl_ids'] = line.concept_id
                 res['amount'] = res[ret_line.id].get('amount_islr_ret', 0.0)

@@ -240,7 +240,7 @@ class AccountWhIslrDocInvoices(models.Model):
                 apply_income = (apply_income and
                                 base >= rate_tuple[0] * rate_tuple[1] / 100.0)
             wh = 0.0
-            subtract = apply_income and rate_tuple[1] or 0.0
+            subtract = apply_income and rate_tuple[3] or 0.0
             subtract_write = 0.0
             sb_concept = subtract
             for line in iwdl_id.xml_ids:

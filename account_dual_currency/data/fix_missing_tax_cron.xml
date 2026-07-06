@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data noupdate="1">
         <record id="ir_cron_fix_missing_tax_today" model="ir.cron">

@@ -258,9 +258,9 @@ class AccountMove(models.Model):
                 _logger.info("[DUAL] _compute_date(): Skipping tax_today recalc for refund %s (type: %s)", rec.id, rec.move_type)
                 continue
             if rec.invoice_date and rec.company_id.currency_id_dif and not rec.tax_today_edited:
-                new_rate_ids = self.env.company.currency_id_dif._get_rates(self.env.company, rec.invoice_date)
+                new_rate_ids = rec.company_id.currency_id_dif._get_rates(rec.company_id, rec.invoice_date)
                 if new_rate_ids:
-                    new_rate = 1 / new_rate_ids[self.env.company.currency_id_dif.id]
+                    new_rate = 1 / new_rate_ids[rec.company_id.currency_id_dif.id]
                     rec.tax_today = new_rate
 
     def _fecha_para_tax_today(self, vals=None):
@@ -277,14 +277,25 @@ class AccountMove(models.Model):
             fecha_str = fields.Date.to_string(fecha)
         else:
             fecha_str = str(fecha)
-        usd = self.env.ref('base.USD')
         company = company or self.env.company
+        # Usar la moneda dual configurada en la compañía (no siempre USD)
+        moneda_dual = company.currency_id_dif or self.env.ref('base.USD')
         tasa = self.env['res.currency.rate'].search([
-            ('currency_id', '=', usd.id),
+            ('currency_id', '=', moneda_dual.id),
             ('name', '=', fecha_str),
             ('company_id', '=', company.id)
         ], limit=1)
-        return tasa.inverse_company_rate if tasa else 1.0
+        if tasa:
+            _logger.info("[DUAL] _get_tasa_by_date(): moneda=%s, fecha=%s, tasa=%s", moneda_dual.name, fecha_str, tasa.inverse_company_rate)
+            return tasa.inverse_company_rate
+        # Fallback: usar _get_rates() que busca la tasa más cercana
+        rate_ids = moneda_dual._get_rates(company, fecha_str)
+        if rate_ids and moneda_dual.id in rate_ids:
+            rate = 1.0 / rate_ids[moneda_dual.id]
+            _logger.info("[DUAL] _get_tasa_by_date() fallback: moneda=%s, fecha=%s, tasa=%s", moneda_dual.name, fecha_str, rate)
+            return rate
+        _logger.warning("[DUAL] _get_tasa_by_date(): No se encontró tasa para moneda=%s en fecha=%s", moneda_dual.name, fecha_str)
+        return 1.0
 
     @api.model_create_multi
     def create(self, vals_list):

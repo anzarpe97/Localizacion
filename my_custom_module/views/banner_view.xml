@@ -1,5 +1,5 @@
-<odoo>
-    <data>
+﻿<odoo>
+    
         <record id="custom_neutralize_banner" model="ir.ui.view">
             <field name="name">Neutralize Banner</field>
             <field name="model">ir.ui.view</field>
@@ -12,5 +12,4 @@
                 </xpath>
             </field>
         </record>
-    </data>
 </odoo>

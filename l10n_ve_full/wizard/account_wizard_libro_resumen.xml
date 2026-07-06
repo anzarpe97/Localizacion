@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
+
     	<record id="account_wizard_libro_resumen" model="ir.ui.view">
        	    <field name="name">Resumen de Libro de Compras y Libro de Ventas</field>
             <field name="model">account.wizard.libro.resumen</field>
@@ -49,5 +49,4 @@
             <field name="name">Resumen iva y libros</field>
             <field name="digits">2</field>
         </record>
-</data>
 </odoo>

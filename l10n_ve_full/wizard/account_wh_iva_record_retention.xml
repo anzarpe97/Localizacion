@@ -1,5 +1,5 @@
-<odoo>
-  <data>
+﻿<odoo>
+  
       <record id="view_record_retention_iva" model="ir.ui.view">
             <field name="name">account.wh.iva.record.retention.form</field>
                 <field name="model">account.wh.iva.record.retention</field>
@@ -35,5 +35,4 @@
         	<field name="target">new</field>
     	</record>
         <menuitem id="menu_action_record_iva_retention" name="Registrar Retención de IVA" parent="account.menu_finance_receivables" action="action_retention_iva"/>
-  </data>
 </odoo>

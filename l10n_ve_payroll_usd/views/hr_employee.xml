@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+    
         <record id="act_hr_employee_loan_list" model="ir.actions.act_window">
             <field name="res_model">hr.employee.loan</field>
             <field name="name">Préstamos</field>
@@ -130,5 +130,4 @@
                 </xpath>
             </field>
         </record>
-    </data>
 </odoo>

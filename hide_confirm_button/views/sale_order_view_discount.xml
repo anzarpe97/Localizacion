@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data>
+  
     <!-- Heredar la vista del wizard de descuento -->
     <record id="sale_order_line_discount_wizard_form_inherit" model="ir.ui.view">
       <field name="name">sale.order.line.discount.wizard.form.inherit</field>
@@ -25,5 +25,4 @@
         </xpath>
       </field>
     </record>
-  </data>
 </odoo>

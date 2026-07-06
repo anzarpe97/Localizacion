@@ -1,5 +1,5 @@
-<odoo>
-    <data>
+﻿<odoo>
+    
         <record id="ks_global_tax_invoice_supplier_purchase_form" model="ir.ui.view">
             <field name="name">ks.global_tax.invoice.account.move</field>
             <field name="model">account.move</field>
@@ -48,5 +48,4 @@
                 </xpath>
             </field>
         </record>
-    </data>
 </odoo>

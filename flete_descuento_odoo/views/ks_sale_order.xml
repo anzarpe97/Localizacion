@@ -1,5 +1,5 @@
-<odoo>
-    <data>
+﻿<odoo>
+    
 
         <record id="ks_tax_sale_order_form_inherited" model="ir.ui.view">
             <field name="name">ks.tax.sale_order.form.inherited</field>
@@ -27,6 +27,4 @@
                 </xpath>
             </field>
         </record>
-
-    </data>
 </odoo>

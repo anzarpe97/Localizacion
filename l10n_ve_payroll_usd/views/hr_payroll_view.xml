@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+    
 
         <!-- <record id="hr_payslip_form_inherit_views_lunes" model="ir.ui.view">
             <field name="name">hr_payslip_form_inherit_views_lunes</field>
@@ -95,6 +95,4 @@
                 </xpath>
             </field>
         </record>
-        
-    </data>
 </odoo>

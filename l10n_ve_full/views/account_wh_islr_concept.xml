@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
         <record id="view_wh_concept_filter" model="ir.ui.view">
             <field name="name">account.wh.islr.concept.search</field>
             <field name="model">account.wh.islr.concept</field>
@@ -103,6 +103,4 @@
 
          <menuitem id="menu_finance_islr_settings" name="Tabla de Tarifas de Retenciones de ISLR" sequence="6"
              parent="l10n_ve_full.menu_finance_fiscal_settings" action="action_wh_islr_concept"/>
-
-    </data>
 </odoo>

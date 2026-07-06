@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
         <record id="view_islr_wh_doc_invoices_tree_" model="ir.ui.view">
             <field name="name">account.wh.islr.doc.invoices_tree</field>
             <field name="model">account.wh.islr.doc.invoices</field>
@@ -436,6 +436,4 @@
         </record>
 
         <menuitem id="menu_action_wh_islr_supplier" name="Retención de ISLR al Proveedor" parent="account.menu_finance_payables" action="action_wh_islr_supplier"/>
-
-    </data>
 </odoo>

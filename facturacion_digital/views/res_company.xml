@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    
         <record id="factura_company_digital" model="ir.ui.view">
             <field name="name">factura.company.digital</field>
             <field name="model">res.company</field>
@@ -13,6 +13,4 @@
                 </xpath>
             </field>
         </record>
-
-    </data>
 </odoo>

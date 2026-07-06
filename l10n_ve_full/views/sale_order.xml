@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    
         <record id="extra_sale_order_venezuela" model="ir.ui.view">
             <field name="name">Extra sale.order Venezuela</field>
             <field name="model">sale.order</field>
@@ -18,6 +18,5 @@
                      </xpath>
             </field>
         </record>
-    </data>
 </odoo>
 

@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
         <record id="view_generate_txt_iva_tree" model="ir.ui.view">
             <field name="name">generate.account.wh.iva.txt.tree</field>
             <field name="model">account.wh.iva.txt</field>
@@ -100,6 +100,4 @@
         </record>
 
         <menuitem name="Generar TXT IVA" id="menu_action_generate_txt_iva" parent="l10n_ve_full.menu_venezuela_reporting" action="action_generate_text_iva"/>
-
-    </data>
 </odoo>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+    
 
         <record model="report.paperformat" id="paperformat_report_purchase_book">
 
@@ -881,5 +881,4 @@
             </div>
           </t>
         </template>
-    </data>
 </odoo>

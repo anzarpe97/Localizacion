@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+    
 
         <!-- Vista list para prestaciones -->
         <record id="hr_employee_prestaciones_list" model="ir.ui.view">
@@ -50,7 +50,5 @@
                   parent="menu_l10n_ve_payroll_usd_reports_group"
                   action="hr_employee_prestaciones_action"
                   sequence="41"/>
-
-    </data>
 
 </odoo>

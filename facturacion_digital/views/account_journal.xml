@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
         <record id="facturacion_digital_journal" model="ir.ui.view">
             <field name="name">facturacion.digital.journal</field>
             <field name="model">account.journal</field>
@@ -13,6 +13,4 @@
 
             </field>
         </record>
-
-    </data>
 </odoo>

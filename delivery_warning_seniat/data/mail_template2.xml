@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
+    
         <!-- Plantilla de correo para notificación al SENIAT -->
         <record id="mail_template_notify_seniat" model="mail.template">
             <field name="name">Notificación al SENIAT</field>
@@ -26,5 +26,4 @@
                 </html>
             ]]></field>
         </record>
-    </data>
 </odoo>

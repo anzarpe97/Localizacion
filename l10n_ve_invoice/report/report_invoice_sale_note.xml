@@ -1,7 +1,7 @@
-
+﻿
 <odoo>
 
-    <data>
+    
         <record id="action_invoice_sale_note_l10n_ve_invoice" model="ir.actions.report">
             <field name="name">Sale Note</field>
             <field name="model">account.move</field>
@@ -317,6 +317,5 @@
                 </xpath>
             </t>
         </template>
-    </data>
 
 </odoo>

@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
 
         <record id="view_xml_islr_line_tree" model="ir.ui.view">
             <field name="name">account.wh.islr.xml.line_tree</field>
@@ -235,6 +235,4 @@
         </record>
 
         <menuitem name="Generar archivo XML" id="menu_action_xml_islr" parent="l10n_ve_full.menu_venezuela_reporting" action="action_xml_islr"/>
-
-    </data>
 </odoo>

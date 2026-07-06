@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
 
         <record model="ir.ui.view" id="wizard_employee_income_wh_islr_form">
             <field name="name">employee_income_wh_islr.form</field>
@@ -19,6 +19,4 @@
                 </form>
             </field>
         </record>
-
-    </data>
 </odoo>

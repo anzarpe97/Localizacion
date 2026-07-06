@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <data>
+    
         <record model="ir.ui.view" id="wizard_nro_ctrl_form">
             <field name="name">wizard.nro.ctrl.form</field>
             <field name="model">wiz.nroctrl</field>
@@ -28,5 +28,4 @@
                 <field name="view_id" ref="wizard_nro_ctrl_form"/>
                 <field name="target">new</field>
         </record>
-    </data>
 </odoo>

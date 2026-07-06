@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-    
-        <record id="stock_valuation_layer_dual_currency_tree" model="ir.ui.view">
+<record id="stock_valuation_layer_dual_currency_tree" model="ir.ui.view">
             <field name="name">stock_valuation_layer_tree.dual_currency</field>
             <field name="model">stock.valuation.layer</field>
             <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
@@ -33,6 +31,4 @@
                  </xpath>
             </field>
         </record>
-
-    </data>
 </odoo>

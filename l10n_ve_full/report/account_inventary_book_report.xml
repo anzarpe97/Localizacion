@@ -1,6 +1,6 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    
+    <data>
 
 		<record id="report_inventary_book" model="ir.actions.report">
             <field name="name">Libro de Inventario</field>
@@ -227,4 +227,6 @@
             </div>
           </t>
         </template>
+
+    </data>
 </odoo>

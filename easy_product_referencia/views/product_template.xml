@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <record id="view_product_template_form" model="ir.ui.view">
             <field name="name">product.template.common.form</field>
             <field name="model">product.template</field>
@@ -11,4 +11,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

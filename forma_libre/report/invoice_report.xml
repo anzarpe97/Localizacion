@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <!-- Definir el reporte -->
         <report
             id="action_report_invoice_custom"
@@ -11,4 +11,5 @@
             print_report_name="'Factura Fiscal - %s' % (object.name)"
             paperformat="fiscal_format"
         />
+    </data>
 </odoo>

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <data>
         <!--    Tipos de estructura mensual    -->
         <record id="structure_type_mensual" model="hr.payroll.structure.type">
             <field name="name">Mensual</field>
@@ -514,4 +514,6 @@ result = (categories.BASIC + categories.ASIGNA + categories.SUBS + categories.BO
             <field name="sequence" eval="500"/>
             <field name="struct_id" ref="structure_mensual"/>
         </record>
+
+    </data>
 </odoo>

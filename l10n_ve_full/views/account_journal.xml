@@ -1,6 +1,6 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    
+    <data>
         <record id="extra_account_journal_venezuela" model="ir.ui.view">
             <field name="name">Extra account.journal.form Venezuela</field>
             <field name="model">account.journal</field>
@@ -20,4 +20,6 @@
                 </xpath>
             </field>
         </record>
+
+    </data>
 </odoo>

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <data>
         <menuitem id="menu_finance_fiscal_settings" name="Configuración Fiscal de Venezuela" parent="account.menu_finance_configuration" sequence="21"/>
 
         <record id="view_account_ut_filter" model="ir.ui.view">
@@ -54,4 +54,6 @@
         </record>
 
         <menuitem parent="menu_finance_fiscal_settings" id="menu_action_account_ut" action="act_account_ut_2"/>
+
+    </data>
 </odoo>

@@ -1,6 +1,6 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    
+    <data>
 
         <menuitem id="menu_venezuela_reporting" name="Informes de Venezuela" parent="account.menu_finance_reports"/>
         <menuitem id="menu_wh_configuration" name="Retenciones" parent="menu_finance_fiscal_settings"/>
@@ -180,4 +180,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

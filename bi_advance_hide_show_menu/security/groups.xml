@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>   
-            
+    <data>        
        <record id="group_import_btn_access" model="res.groups">
             <field name="name">Hide Import Button</field>
         </record>
@@ -22,4 +22,5 @@
         <record id="group_hide_export_action" model="res.groups">
             <field name="name">Hide Export Action</field>
         </record>
+    </data>
 </odoo>

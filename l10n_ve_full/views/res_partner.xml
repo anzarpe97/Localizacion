@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <data>
         <record id="extra_partner_venezuela" model="ir.ui.view">
             <field name="name">Extra partner Venezuela</field>
             <field name="model">res.partner</field>
@@ -97,4 +97,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

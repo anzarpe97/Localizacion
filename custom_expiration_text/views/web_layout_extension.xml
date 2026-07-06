@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    
+    <data>
         <!-- Vista que agrega el banner -->
         <record id="neutralize_banner" model="ir.ui.view">
             <field name="name">Neutralize Banner</field>
@@ -14,4 +14,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

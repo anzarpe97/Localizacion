@@ -1,6 +1,6 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    
+    <data>
         <record id="view_wh_islr_rate_form" model="ir.ui.view">
             <field name="name">tasas_form</field>
             <field name="model">account.wh.islr.rates</field>
@@ -53,4 +53,6 @@
         </record>
 
         <menuitem id="menu_finance_islr_rates" name="Tasas de Retención de ISLR"  sequence="8" parent="l10n_ve_full.menu_finance_fiscal_settings" action="action_wh_islr_rates"/>
+
+    </data>
 </odoo>

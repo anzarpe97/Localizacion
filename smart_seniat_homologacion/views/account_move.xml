@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <record id="smart_seniat_homologacion_account_move" model="ir.ui.view">
             <field name="name">Smart Seniat Homologacion Account Move</field>
             <field name="model">account.move</field>
@@ -53,4 +53,5 @@
 
             </field>
         </record>
+    </data>
 </odoo>

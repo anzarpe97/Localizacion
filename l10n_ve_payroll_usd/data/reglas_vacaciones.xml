@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <data>
 
         <record id="structure_type_vacaciones_anual" model="hr.payroll.structure.type">
             <field name="name">Vacaciones</field>
@@ -220,4 +220,6 @@ result = categories.BASIC + categories.ASIGNA + categories.ASIGNA + categories.B
             <field name="sequence" eval="302"/>
             <field name="struct_id" ref="structure_vacaciones"/>
         </record>
+
+    </data>
 </odoo>

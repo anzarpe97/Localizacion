@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <record id="res_config_settings_binaural_invoice" model="ir.ui.view">
             <field name="name">res.config.settings.binaural.rate</field>
             <field name="model">res.config.settings</field>
@@ -19,4 +19,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

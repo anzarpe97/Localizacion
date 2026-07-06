@@ -1,6 +1,6 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    
+    <data>
         <record model="ir.ui.view" id="fiscal_book_wizard_form">
             <field name="name">account.fiscal.book.wizard.form</field>
             <field name="model">account.fiscal.book.wizard</field>
@@ -28,4 +28,7 @@
             <field name="view_id" ref="fiscal_book_wizard_form"/>
             <field name="target">new</field>
         </record>
+
+
+    </data>
 </odoo>

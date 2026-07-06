@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <!-- Vista de configuración personalizada -->
         <record id="view_res_config_settings_inherit" model="ir.ui.view">
             <field name="name">res.config.settings.inherit.footer</field>
@@ -15,4 +15,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

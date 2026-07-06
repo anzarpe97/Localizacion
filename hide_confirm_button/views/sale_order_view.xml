@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  
+  <data>
     <!-- Reemplaza el header completo en la vista de Pedidos de Venta -->
     <record id="sale_order_form_custom_header" model="ir.ui.view">
       <field name="name">sale.order.form.custom.header</field>
@@ -64,4 +64,5 @@
         </xpath>
       </field>
     </record>
+  </data>
 </odoo>

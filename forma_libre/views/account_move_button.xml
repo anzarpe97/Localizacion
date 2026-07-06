@@ -1,5 +1,5 @@
-﻿<odoo>
-    
+<odoo>
+    <data>
         <!-- Definir el botón para imprimir el reporte en la vista de formulario -->
         <record id="view_invoice_form_with_print_button" model="ir.ui.view">
             <field name="name">account.move.form.with.print.button</field>
@@ -30,4 +30,5 @@
                 </xpath>
             </field>
         </record>
+    </data>
 </odoo>

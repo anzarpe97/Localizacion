@@ -277,10 +277,10 @@ class AccountMove(models.Model):
             fecha_str = fields.Date.to_string(fecha)
         else:
             fecha_str = str(fecha)
-        usd = self.env.ref('base.USD')
         company = company or self.env.company
+        currency = company.currency_id_dif or self.env.ref('base.USD')
         tasa = self.env['res.currency.rate'].search([
-            ('currency_id', '=', usd.id),
+            ('currency_id', '=', currency.id),
             ('name', '=', fecha_str),
             ('company_id', '=', company.id)
         ], limit=1)

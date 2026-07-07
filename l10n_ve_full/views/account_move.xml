@@ -15,6 +15,18 @@
             <field name="target">new</field>
         </record>
 
+        <!-- Ocultar botón "Enviar e Imprimir" en Facturas -->
+        <record id="hide_send_print_button" model="ir.ui.view">
+            <field name="name">Hide Send and Print Button</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[contains(@name, 'action_invoice_sent')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
         <record id="extra_account_move_venezuela" model="ir.ui.view">
             <field name="name">Extra account.move Venezuela</field>
             <field name="model">account.move</field>
@@ -77,22 +89,22 @@
                                 <field name="wh_iva_id"/>
                                 <field name="iva_number_asignado" readonly="1" force_save="1"/>
                                 <!-- <field name="vat_apply" invisible="move_type == 'entry'" string="Excluir este documento de la retención de IVA"/> -->
-                                <!-- <button name="action_generate_wh_iva_manual"
+                                <button name="action_generate_wh_iva_manual"
                                     string="Generar Retención IVA"
                                     type="object"
                                     class="btn-primary"
-                                    invisible="state != 'posted' or wh_iva_id != False"/> -->
+                                    invisible="state != 'posted' or wh_iva_id != False"/>
                             </group>
                             <group string="Retención ISLR">
 
                                 <field name="status"  colspan="2"/>
                                 <field name="islr_wh_doc_id" readonly="1"/>
                                 <field name="islr_number_asignado" readonly="1" force_save="1"/>
-                                <!-- <button name="generate_islr"
+                                <button name="generate_islr"
                                         type="object"
                                         string="Generar Retención ISLR"
                                         class="btn-primary"
-                                        invisible="state != 'posted' or islr_wh_doc_id != False"/> -->
+                                        invisible="state != 'posted' or islr_wh_doc_id != False"/>
                             </group>
                         </group>
                     </page>
@@ -165,18 +177,6 @@
                 <xpath expr="//field[@name='name']" position="after">
                     <!-- <field name="nro_ctrl" string="N° Control"/>-->
                     <field name="correlative" string="N° Control"/>
-                </xpath>
-            </field>
-        </record>
-
-        <!-- Ocultar botón "Enviar e Imprimir" en Facturas -->
-        <record id="hide_send_print_button" model="ir.ui.view">
-            <field name="name">Hide Send and Print Button</field>
-            <field name="model">account.move</field>
-            <field name="inherit_id" ref="account.view_move_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//button[contains(@name, 'action_invoice_sent')]" position="attributes">
-                    <attribute name="invisible">1</attribute>
                 </xpath>
             </field>
         </record>

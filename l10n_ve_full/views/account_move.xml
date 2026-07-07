@@ -15,18 +15,6 @@
             <field name="target">new</field>
         </record>
 
-        <!-- Ocultar botón "Enviar e Imprimir" en Facturas -->
-        <record id="hide_send_print_button" model="ir.ui.view">
-            <field name="name">Hide Send and Print Button</field>
-            <field name="model">account.move</field>
-            <field name="inherit_id" ref="account.view_move_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//button[contains(@name, 'action_invoice_sent')]" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-            </field>
-        </record>
-
         <record id="extra_account_move_venezuela" model="ir.ui.view">
             <field name="name">Extra account.move Venezuela</field>
             <field name="model">account.move</field>
@@ -177,6 +165,18 @@
                 <xpath expr="//field[@name='name']" position="after">
                     <!-- <field name="nro_ctrl" string="N° Control"/>-->
                     <field name="correlative" string="N° Control"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Ocultar botón "Enviar e Imprimir" en Facturas -->
+        <record id="hide_send_print_button" model="ir.ui.view">
+            <field name="name">Hide Send and Print Button</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[contains(@name, 'action_invoice_sent')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
                 </xpath>
             </field>
         </record>

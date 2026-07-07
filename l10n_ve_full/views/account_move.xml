@@ -89,11 +89,11 @@
                                 <field name="wh_iva_id"/>
                                 <field name="iva_number_asignado" readonly="1" force_save="1"/>
                                 <!-- <field name="vat_apply" invisible="move_type == 'entry'" string="Excluir este documento de la retención de IVA"/> -->
-                                <button name="action_generate_wh_iva_manual"
+                                <!-- <button name="action_generate_wh_iva_manual"
                                     string="Generar Retención IVA"
                                     type="object"
                                     class="btn-primary"
-                                    invisible="state != 'posted' or wh_iva_id != False"/>
+                                    invisible="state != 'posted' or wh_iva_id != False"/> -->
                             </group>
                             <group string="Retención ISLR">
 

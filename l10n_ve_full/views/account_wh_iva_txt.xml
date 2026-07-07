@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
         <record id="view_generate_txt_iva_tree" model="ir.ui.view">
@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
-                    <!--field name="period_id"/-->
+                    
                     <field name="amount_total_ret"/>
                     <field name="amount_total_base"/>
                     <field name="type"/>
@@ -22,7 +22,7 @@
             <field name="name">generate.account.wh.iva.txt.form</field>
             <field name="model">account.wh.iva.txt</field>
             <field name="arch" type="xml">
-                <form string="Líneas de Retención para TXT IVA">
+                <form string="LÃ­neas de RetenciÃ³n para TXT IVA">
                     <header>
                         <button name="action_generate_lines_txt" string="Generar Lineas TXT" invisible="state != 'draft'" type="object"  class="oe_highlight"/>
                         <button name="action_confirm" string="Confirmar" invisible="state != 'draft'" type="object"  class="oe_highlight"/>
@@ -43,7 +43,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Lineas de Retención">
+                            <page string="Lineas de RetenciÃ³n">
                                 <group>
                                     <field name="txt_ids" nolabel="1" widget="one2many_list" colspan="2">
                                         <tree string="Field of lines TXT"  create="false">
@@ -84,10 +84,10 @@
             <field name="name">Generar TXT</field>
             <field name="res_model">account.wh.iva.txt</field>
             <field name="type">ir.actions.act_window</field>
-<!--            <field name="view_type">form</field>-->
+
             <field name="view_mode">tree,form</field>
-<!--            <field name="search_view_id" ref="view_generate_txt_filter"/>-->
-            <field name="help"> Con esta opción puedes crear y manejar la generación del Archivo TXT de IVA, requerido por la localización venezolana para los agentes de retención de IVA</field>
+
+            <field name="help"> Con esta opciÃ³n puedes crear y manejar la generaciÃ³n del Archivo TXT de IVA, requerido por la localizaciÃ³n venezolana para los agentes de retenciÃ³n de IVA</field>
         </record>
 
         <record model="ir.rule" id="txt_iva_company_rule">

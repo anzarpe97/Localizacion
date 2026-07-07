@@ -1,14 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
         <record id="view_wh_concept_filter" model="ir.ui.view">
             <field name="name">account.wh.islr.concept.search</field>
             <field name="model">account.wh.islr.concept</field>
             <field name="arch" type="xml">
-                <search string="Busqueda de concepto de retención de ISLR">
+                <search string="Busqueda de concepto de retenciÃ³n de ISLR">
                    <group col="10" colspan="4">
-                        <filter name="withholdable" string="Withhold" domain="[('withholdable','=','True')]" help="concepto de retención retenida"/>
-                        <!--filter domain="[('user_id','=',uid)]" help="Mi retención de ISLR" separator="1"/-->
+                        <filter name="withholdable" string="Withhold" domain="[('withholdable','=','True')]" help="concepto de retenciÃ³n retenida"/>
+                        
                     </group>
                </search>
             </field>
@@ -17,7 +17,7 @@
             <field name="name">account.wh.islr.concept_tree</field>
             <field name="model">account.wh.islr.concept</field>
             <field name="arch" type="xml">
-                <tree string="Concepto de retención de ISLR">
+                <tree string="Concepto de retenciÃ³n de ISLR">
                     <field name="name"/>
                     <field name="withholdable"/>
                 </tree>
@@ -28,11 +28,11 @@
             <field name="name">account.wh.islr.concept_form</field>
             <field name="model">account.wh.islr.concept</field>
             <field name="arch" type="xml">
-                <form string="Concepto de retención de ISLR">
+                <form string="Concepto de retenciÃ³n de ISLR">
                     <sheet>
                         <group>
                             <field name="name"/>
-    <!--                        <field name="codigo"/>-->
+    
                             <field name="withholdable"/>
                         </group>
                         <notebook>
@@ -80,10 +80,10 @@
             <field name="name">Tabla de Tarifas de Retenciones de ISLR</field>
             <field name="res_model">account.wh.islr.concept</field>
             <field name="type">ir.actions.act_window</field>
-            <!--<field name="view_type">form</field>-->
+            
             <field name="view_mode">tree,form</field>
-            <!--field name="search_view_id" ref="view_wh_concept_filter"/-->
-            <field name="help">Con el "Concepto de retención de ISLR" puede crear y administrar el concepto de ISLR retenidos. Para cada concepto es crear y gestionar las tasas asociadas.</field>
+            
+            <field name="help">Con el "Concepto de retenciÃ³n de ISLR" puede crear y administrar el concepto de ISLR retenidos. Para cada concepto es crear y gestionar las tasas asociadas.</field>
         </record>
 
 

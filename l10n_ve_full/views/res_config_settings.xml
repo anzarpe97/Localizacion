@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="extra_company_venezuela_setting" model="ir.ui.view">
@@ -15,9 +15,9 @@
                                 <field name="automatic_income_wh" widget="upgrade_boolean"/>
                             </div>
                             <div class="o_setting_right_pane" name="account_islr_right_pane">
-                                <label for="automatic_income_wh" string="Retención ISLR"/>
+                                <label for="automatic_income_wh" string="RetenciÃ³n ISLR"/>
                                 <div class="text-muted">
-                                    Se realiza retención automática de ingresos a los proveedores
+                                    Se realiza retenciÃ³n automÃ¡tica de ingresos a los proveedores
                                 </div>
                             </div>
                         </div>
@@ -26,21 +26,21 @@
                                 <field name="allow_vat_wh_outdated" widget="upgrade_boolean"/>
                             </div>
                             <div class="o_setting_right_pane" name="account_iva_right_pane">
-                                <label for="allow_vat_wh_outdated" string="Retención IVA"/>
+                                <label for="allow_vat_wh_outdated" string="RetenciÃ³n IVA"/>
                                 <div class="text-muted">
-                                    Se realiza retención automática de IVA a los proveedores
+                                    Se realiza retenciÃ³n automÃ¡tica de IVA a los proveedores
                                 </div>
                             </div>
                         </div>
-                        <!--ITF Bancario-->
+                        
                         <div class="col-12 col-lg-6 o_setting_box" id="itf_settings">
                             <div class="o_setting_left_pane">
                                 <field name="calculate_wh_itf" widget="upgrade_boolean"/>
                             </div>
                             <div class="o_setting_right_pane" name="account_itf_right_pane">
-                                <label for="calculate_wh_itf" string="Retención ITF"/>
+                                <label for="calculate_wh_itf" string="RetenciÃ³n ITF"/>
                                 <div class="text-muted">
-                                    Se realiza descuento automático de la retención en los diarios marcados para ITF
+                                    Se realiza descuento automÃ¡tico de la retenciÃ³n en los diarios marcados para ITF
                                 </div>
                                 <div class="content-group" invisible="not calculate_wh_itf">
                                     <div class="row mt16">
@@ -55,15 +55,15 @@
                                 </div>
                             </div>
                         </div>
-                        <!--IGTF Divisa-->
+                        
                         <div class="col-12 col-lg-6 o_setting_box" id="igtf_settings">
                             <div class="o_setting_left_pane">
                                 <field name="aplicar_igtf_divisa" widget="upgrade_boolean"/>
                             </div>
                             <div class="o_setting_right_pane" name="account_igtf_right_pane">
-                                <label for="aplicar_igtf_divisa" string="Retención IGTF"/>
+                                <label for="aplicar_igtf_divisa" string="RetenciÃ³n IGTF"/>
                                 <div class="text-muted">
-                                    Se realiza descuento automático de la retención en los diarios marcados para ITF
+                                    Se realiza descuento automÃ¡tico de la retenciÃ³n en los diarios marcados para ITF
                                 </div>
                                 <div class="content-group" invisible="not aplicar_igtf_divisa">
                                     <div class="row mt16">
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Representante-->
+                        
                         <div class="col-12 col-lg-6 o_setting_box" id="representante_settings">
                             <div class="o_setting_right_pane" name="account_representante_right_pane">
                                 <label for="representante_legal" string="Representante legal"/>

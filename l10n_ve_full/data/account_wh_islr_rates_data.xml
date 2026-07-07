@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data noupdate="1">
-        <!-- Begin of WH Rates -->
+        
         <record id="islr_rates_086" model="account.wh.islr.rates">
             <field eval="'PJDO'" name="name"/>
             <field eval="'086'" name="code"/>
@@ -35,7 +35,7 @@
             <field eval="0.00" name="subtract"/>
             <field name="concept_id" ref="islr_wh_concept_fondos_de_comercio_en_el_pais"/>
         </record>
-        <!-- ME QUEDE AQUI-->
+        
         <record id="islr_rates_081" model="account.wh.islr.rates">
             <field eval="'PJDO'" name="name"/>
             <field eval="'081'" name="code"/>

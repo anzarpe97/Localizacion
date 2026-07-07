@@ -1,11 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
         <record id="view_wh_iva_tree" model="ir.ui.view">
             <field name="name">account.wh.iva.tree</field>
             <field name="model">account.wh.iva</field>
             <field name="arch" type="xml">
-                <tree string="Retención de IVA" create="false" delete="false">
+                <tree string="RetenciÃ³n de IVA" create="false" delete="false">
                     <field name="name"/>
                     <field name="type" string="Tipo"/>
                     <field name="number" readonly="1" force_save="1"/>
@@ -25,7 +25,7 @@
             <field name="name">account.wh.iva.form.customer</field>
             <field name="model">account.wh.iva</field>
             <field name="arch" type="xml">
-                <form string="Retención de IVA clientes" options="{'no_quick_create': True}" create="false">
+                <form string="RetenciÃ³n de IVA clientes" options="{'no_quick_create': True}" create="false">
                     <header>
                         <button name="confirm_check" invisible="state != 'draft'" type="object" string="Confirmar"/>
                         <button name="action_cancel"  invisible="state not in ('confirmed','draft','done')" type="object" string="Anular"/>
@@ -61,10 +61,10 @@
                                         <field name="total_tax_ret"  readonly="1" force_save="1"/>
                                     </group>
                                     <group>
-                                        <!--                            <field name="amount_base_ret"/>-->
-                                        <!--                            <field name="total_tax_ret"/>-->
-                                        <!--                            <field name="tot_amount_base_wh"/> -->
-                                        <!--                            <field name="tot_amount_tax_wh"/> -->
+                                        
+                                        
+                                        
+                                        
                                     </group>
                                 </group>
                             </page>
@@ -80,15 +80,15 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_account_wh_iva_customer">
-            <field name="name">Retención IVA Clientes</field>
+            <field name="name">RetenciÃ³n IVA Clientes</field>
             <field name="res_model">account.wh.iva</field>
             <field name="type">ir.actions.act_window</field>
-<!--            <field name="view_type">form</field>-->
+
             <field name="view_mode">tree,form</field>
             <field name="domain">[('type','in',('out_invoice','out_refund','out_debit'))]</field>
             <field name="context">{'type':'out_invoice' or 'out_refund' or 'out_debit'}</field>
-<!--            <field name="search_view_id" ref="view_wh_iva_filter"/>-->
-            <field name="help">Con el IVA de retención de clientes puede crear y administrar la retención de documentos emitidos a sus clientes. ODOO también puede generar retenciones de documentos automáticamente de las facturas. Para la retención debe agregar las facturas, procesarlas y luego validar el documento.</field>
+
+            <field name="help">Con el IVA de retenciÃ³n de clientes puede crear y administrar la retenciÃ³n de documentos emitidos a sus clientes. ODOO tambiÃ©n puede generar retenciones de documentos automÃ¡ticamente de las facturas. Para la retenciÃ³n debe agregar las facturas, procesarlas y luego validar el documento.</field>
         </record>
         <record model="ir.actions.act_window.view" id="act_wv_account_wh_iva_customer_tree">
             <field name="sequence" eval="10"/>
@@ -103,17 +103,17 @@
             <field name="act_window_id" ref="action_account_wh_iva_customer"/>
         </record>
 
-        <menuitem id="menu_action_account_wh_iva_customer" name="Retención de IVA del Cliente" parent="account.menu_finance_receivables" action="action_account_wh_iva_customer"/>
+        <menuitem id="menu_action_account_wh_iva_customer" name="RetenciÃ³n de IVA del Cliente" parent="account.menu_finance_receivables" action="action_account_wh_iva_customer"/>
 
         <record id="view_wh_iva_form" model="ir.ui.view">
             <field name="name">account.wh.iva.form</field>
             <field name="model">account.wh.iva</field>
             <field name="arch" type="xml">
-                <form string="Retención de IVA Proveedores" options="{'no_quick_create': True}" create="false">
+                <form string="RetenciÃ³n de IVA Proveedores" options="{'no_quick_create': True}" create="false">
                     <header>
                         <button name="confirm_check" type="object" invisible="state != 'draft'" string="Confirmar"/>
                         <button name="action_cancel" colspan="2" type="object"  invisible="state not in ('draft','done')" string="Anular"/>
-                        <button name="action_send_mail" invisible="state != 'done'" type="object" string="Enviar por correo" confirm="¿Está seguro que desea enviar por correo?"/>
+                        <button name="action_send_mail" invisible="state != 'done'" type="object" string="Enviar por correo" confirm="Â¿EstÃ¡ seguro que desea enviar por correo?"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,done" statusbar_colors="{&quot;confirmed&quot;:&quot;blue&quot;}"/>
                     </header>
                     <sheet>
@@ -148,8 +148,7 @@
                                         <field name="total_tax_ret" readonly="1" force_save="1"/>
                                     </group>
                                     <group>
-                                        <!--field name="tot_amount_base_wh" groups='l10n_ve_withholding_iva.group_account_wh_iva_manager'/>
-                                        <field name="tot_amount_tax_wh" groups='l10n_ve_withholding_iva.group_account_wh_iva_manager'/-->
+                                        
                                     </group>
                                 </group>
                             </page>
@@ -165,15 +164,15 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_account_wh_iva_supplier">
-            <field name="name">Retención de IVA Proveedores</field>
+            <field name="name">RetenciÃ³n de IVA Proveedores</field>
             <field name="res_model">account.wh.iva</field>
             <field name="type">ir.actions.act_window</field>
-<!--            <field name="view_type">form</field>-->
+
             <field name="view_mode">tree,form</field>
             <field name="domain">[('type','in',('in_invoice','in_refund','in_debit'))]</field>
             <field name="context">{'type':'in_invoice' or 'in_refund' or 'in_debit'}</field>
-<!--            <field name="search_view_id" ref="view_wh_iva_filter"/>-->
-            <field name="help">Con el Proveedor de retención de IVA puede crear y administrar la retención de documentos emitidos a sus clientes. Odoo también puede generar retenciones de documentos automáticamente de las facturas. Para la retención debe agregar las facturas, procesarlas y luego validar el documento.</field>
+
+            <field name="help">Con el Proveedor de retenciÃ³n de IVA puede crear y administrar la retenciÃ³n de documentos emitidos a sus clientes. Odoo tambiÃ©n puede generar retenciones de documentos automÃ¡ticamente de las facturas. Para la retenciÃ³n debe agregar las facturas, procesarlas y luego validar el documento.</field>
         </record>
         <record model="ir.actions.act_window.view" id="act_wv_account_wh_iva_supplier_tree">
             <field name="sequence" eval="10"/>
@@ -188,10 +187,10 @@
             <field name="act_window_id" ref="action_account_wh_iva_supplier"/>
         </record>
 
-        <menuitem id="menu_action_account_wh_iva_supplier" name="Retención de IVA al Proveedor" parent="account.menu_finance_payables" action="action_account_wh_iva_supplier"/>
+        <menuitem id="menu_action_account_wh_iva_supplier" name="RetenciÃ³n de IVA al Proveedor" parent="account.menu_finance_payables" action="action_account_wh_iva_supplier"/>
 
         <record model="ir.rule" id="iva_company_rule">
-            <field name="name">Retención IVA Doc: multi-company</field>
+            <field name="name">RetenciÃ³n IVA Doc: multi-company</field>
             <field name="model_id" ref="model_account_wh_iva"/>
             <field name="global" eval="True"/>
             <field name="domain_force">
@@ -203,8 +202,8 @@
             <field name="name">account.wh.iva.line.tree</field>
             <field name="model">account.wh.iva.line</field>
             <field name="arch" type="xml">
-                <tree string="Líneas de retención" create="false" delete="false">
-<!--                    <button name="load_taxes" string="Load Taxes" type="object" icon="gtk-ok" colspan="2" help="Click on this button to ensure the invoice related compute correctly taxes for this line of withholding, it is necesary looking to allow manually force if your are not agreed with automatic computation."/>-->
+                <tree string="LÃ­neas de retenciÃ³n" create="false" delete="false">
+
                     <field name="name"/>
                     <field
                         name="invoice_id"
@@ -212,9 +211,9 @@
                         />
                     <field name="type" invisible="1"/>
                     <field name="supplier_invoice_number" invisible="supplier_invoice_number == ' ' or type in ('out_invoice','out_refund','out_debit')"/>
-                    <!-- <field name="correlative" inviisble="1"/> -->
+                    
                     <field name="nro_ctrl" invisible="1"/>
-                    <!--<field name="retention_rate" />-->
+                    
                     <field name="amount_tax_ret" sum="Wh total" readonly="1" force_save="1"/>
                     <field name="wh_iva_rate"/>
                     <field name="tax_line"/>
@@ -228,7 +227,7 @@
             <field name="name">account.wh.iva.line.form</field>
             <field name="model">account.wh.iva.line</field>
             <field name="arch" type="xml">
-                <form string="Líneas de retención">
+                <form string="LÃ­neas de retenciÃ³n">
                     <notebook>
                         <page string="Factura retenida">
                             <group colspan="4">
@@ -239,7 +238,7 @@
                                  <field name="type" />
                                 <field name="supplier_invoice_number" invisible="supplier_invoice_number == ' ' or type in ('out_invoice','out_refund','out_debit')"/>
                                 <field name="nro_ctrl" inviisble="1"/>
-                                <!-- <field name="correlative" inviisble="0"/> -->
+                                
                                 <field name="name"/>
                                 <field name="move_id"/>
                             </group>
@@ -274,7 +273,7 @@
                                                invisible="not check_false"/>
 
                                     <button name="load_taxes" string="Cargar Impuestos" type="object" colspan="2" invisible="not check_false"
-                                            help="Haga clic en este botón para asegurarse de que el cálculo relacionado con la factura grava correctamente los impuestos para esta línea de retención; es necesario buscar permitir la fuerza manual si no está de acuerdo con el cálculo automático."/>
+                                            help="Haga clic en este botÃ³n para asegurarse de que el cÃ¡lculo relacionado con la factura grava correctamente los impuestos para esta lÃ­nea de retenciÃ³n; es necesario buscar permitir la fuerza manual si no estÃ¡ de acuerdo con el cÃ¡lculo automÃ¡tico."/>
                                 </group>
                         </page>
                     </notebook>

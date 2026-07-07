@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
 
@@ -13,7 +13,7 @@
                             </td>
                             <td style="width:10%;text-align:center;">
                                 <p style="font-size:18px;color:red; text-align:left;">
-                                    Comprobante de Retención de ISLR <span style="color:black;" t-esc="d.number"/>
+                                    Comprobante de RetenciÃ³n de ISLR <span style="color:black;" t-esc="d.number"/>
                                 </p>
                             </td>
                         </tr>
@@ -21,11 +21,11 @@
                     <br/>
                         <table style="width:100%; font-size:14px;">
                             <tr>
-                                <td style="width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-left:10px">Nombre o Razón Social del Agente de Retención:
+                                <td style="width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-left:10px">Nombre o RazÃ³n Social del Agente de RetenciÃ³n:
                                 </td>
-                                <td style="width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-left:10px">Registro de Infomación Fiscal del Agente de Retención:
+                                <td style="width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-left:10px">Registro de InfomaciÃ³n Fiscal del Agente de RetenciÃ³n:
                                 </td>
-                                <td style="width:20%;text-align:left;border-left:1px solid;border-top:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">Período Fiscal:
+                                <td style="width:20%;text-align:left;border-left:1px solid;border-top:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">PerÃ­odo Fiscal:
                                 </td>
                             </tr>
                             <tr >
@@ -40,7 +40,7 @@
                                 </td>
                             </tr>
                             <tr >
-                                <td colspan="3" style="text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">Dirección Fiscal del Agente de Retención:
+                                <td colspan="3" style="text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">DirecciÃ³n Fiscal del Agente de RetenciÃ³n:
                                 </td>
                             </tr>
                             <tr >
@@ -49,9 +49,9 @@
                                 </td>
                             </tr>
                             <tr >
-                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">Nombre o Razón Social del Agente de Retenido:
+                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">Nombre o RazÃ³n Social del Agente de Retenido:
                                 </td>
-                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">Registro de Infomación Fiscal del Agente de Retenido:
+                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">Registro de InfomaciÃ³n Fiscal del Agente de Retenido:
                                 </td>
                                 <td style="width:20%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">Fecha:
                                 </td>
@@ -61,21 +61,20 @@
                                     <span t-esc="d.partner_id.name"/>
                                 </td>
                                 <td style="width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-left:10px;font-weight: bold;">
-<!--                                    <span t-esc="(d.partner_id.vat[2:] if 'VE' in d.partner_id.vat else d.partner_id.vat) if d.partner_id.vat else ''"/>-->
+
                                         <span t-esc="d.partner_id.rif"/>
                                 </td>
                                 <td style="width:20%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px;font-weight: bold;">
                                    <span t-esc="date_ret"/>
-<!--                                    <span t-field="d.date_ret" t-options='{"format": "dd/MM/yyyy"}'/>-->
+
                                 </td>
                             </tr>
                             <tr >
-                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">Dirección Fiscal del Agente Retenido:
+                                <td style="width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-left:10px">DirecciÃ³n Fiscal del Agente Retenido:
                                 </td>
-                                <td colspan="2" style="width:40%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">Teléfono del Agente Retenido:
+                                <td colspan="2" style="width:40%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">TelÃ©fono del Agente Retenido:
                                 </td>
-                                <!--td style="width:20%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">Fax del Agente Retenido:
-                                </td-->
+                                
                             </tr>
                             <tr >
                                 <td style="width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-left:10px;font-weight: bold;">
@@ -85,9 +84,7 @@
                                 <td colspan="2" style="width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px;font-weight: bold;">
                                     <span t-esc="d.partner_id.phone"/>
                                 </td>
-                                <!--td style="width:20%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-left:10px">
-                                    <span t-esc="d.partner_id.fax"/>
-                               </td-->
+                                
                             </tr>
                         </table>
                             <br/>
@@ -97,16 +94,16 @@
                                         Fecha Factura
                                     </th>
                                     <th style="width:9%;text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
-                                        N° de Factura
+                                        NÂ° de Factura
                                     </th>
                                     <th style="width:9%;text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
-                                        N° Control
+                                        NÂ° Control
                                     </th>
                                     <th style="width:32%;text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
-                                        Concepto de Retención
+                                        Concepto de RetenciÃ³n
                                     </th>
                                     <th style="width:8%;text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
-                                        % de Retención
+                                        % de RetenciÃ³n
                                     </th>
                                     <th style="width:8%;text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
                                         Monto Total del Documento
@@ -124,7 +121,7 @@
                                 </tr>
                                 <tr t-foreach="d.concept_ids" t-as="inv">
                                     <td style="text-align:center;border:1px solid #000;">
-                                        <!--span t-esc="model._get_date_invoice(inv)"/-->
+                                        
                                         <span t-field="inv.invoice_id.invoice_date" t-options='{"format": "dd/MM/yyyy"}'/>
                                     </td>
                                     <td style="text-align:center;border:1px solid #000;">
@@ -183,7 +180,7 @@
                             <table border="1" style="width:100%;margin-top:10px;">
                                 <tr>
                                     <td style="width:50%;text-align:center;padding:0px;margin:0px;">
-<!--                                        <img class="img Firma_fc" src="/l10n_ve_full/static/src/img/Firma_fc.png" style="width:180px; height:90px; margin-top:0px; margin-bottom:5px;"/>-->
+
                                         <img t-attf-src="data:image/*;base64,{{d.company_id.firma_representante}}" style="border :0px;width:180px; height:90px;" width="180px" height="90px" />
                                         <hr/>
                                         <b><span t-if="d.company_id.representante_legal" t-esc="d.company_id.representante_legal"/></b>
@@ -191,7 +188,7 @@
                                         <b>Firma Sello</b>
                                     </td>
                                     <td style="width:50%;text-align:center;padding:0px;margin:0px;">
-<!--                                        <img class="img Firma_falta" src="/l10n_ve_full/static/src/img/Firma_falta.png" style="width:180px; height:90px; margin-top:0px; margin-bottom:5px;"/>-->
+
                                         <br/>
                                         <br/>
                                         <br/>
@@ -256,3 +253,4 @@
 
     </data>
 </odoo>
+

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <record id="account_payment_dual_currency" model="ir.ui.view">
@@ -31,7 +31,7 @@
             </field>
         </record>
 
-        <!--   Heredar la vista account.view_account_payment_tree     -->
+        
         <record id="account_payment_tree_dual_currency" model="ir.ui.view">
             <field name="name">Dual Currency: account.payment.tree</field>
             <field name="model">account.payment</field>

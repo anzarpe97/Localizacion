@@ -100,11 +100,11 @@
                                 <field name="status"  colspan="2"/>
                                 <field name="islr_wh_doc_id" readonly="1"/>
                                 <field name="islr_number_asignado" readonly="1" force_save="1"/>
-                                <button name="generate_islr"
+                                <!-- <button name="generate_islr"
                                         type="object"
                                         string="Generar Retención ISLR"
                                         class="btn-primary"
-                                        invisible="state != 'posted' or islr_wh_doc_id != False"/>
+                                        invisible="state != 'posted' or islr_wh_doc_id != False"/> -->
                             </group>
                         </group>
                     </page>

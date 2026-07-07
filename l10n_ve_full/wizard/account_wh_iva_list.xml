@@ -1,4 +1,4 @@
-﻿<odoo>
+<odoo>
   <data>
       <record id="view_retention_iva_wizard" model="ir.ui.view">
             <field name="name">account.wh.iva.list.form</field>
@@ -9,7 +9,7 @@
                         <div invisible="state != 'choose'">
                             <group>
                                 <group>
-                                    <field name="company" string="CompaÃ±Ã­a" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_company"/>
+                                    <field name="company" string="Compañía" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_company"/>
                                     <field name="start_date" string="Fecha de inicio"/>
                                     <field name="end_date" string="Fecha Final"/>
                                 </group>
@@ -27,7 +27,7 @@
                         </div>
                         <footer invisible="state != 'choose'">
                             <button name="generate_retention_iva_pdf" string="Imprimir PDF" type="object" class="btn-primary"/>
-
+<!--                            <button name="generate_retention_iva_xls" string="Imprimir XLS" type="object" class="btn-primary"/>-->
                             <button string="Cancel" class="btn-default" special="cancel" />
                         </footer>
                         <footer invisible="state != 'get'">
@@ -46,7 +46,7 @@
         	<field name="target">new</field>
     	</record>
 
-      <menuitem id="retention_iva_details" name="Listado RetenciÃ³n IVA" parent="l10n_ve_full.menu_venezuela_reporting" action="action_retention_iva" sequence="201"/>
+      <menuitem id="retention_iva_details" name="Listado Retención IVA" parent="l10n_ve_full.menu_venezuela_reporting" action="action_retention_iva" sequence="201"/>
 
   </data>
 </odoo>

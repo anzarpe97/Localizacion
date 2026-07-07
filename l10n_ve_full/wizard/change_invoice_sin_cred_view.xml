@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
 
@@ -10,14 +10,14 @@
                     <group>
                         <field name="sin_cred"/>
                     </group>
-                    <separator string="Â¿EstÃ¡s seguro de que quieres realizar esta accion?" colspan="4" />
+                    <separator string="¿Estás seguro de que quieres realizar esta accion?" colspan="4" />
                     <group col="2">
                         <field name="sure"/>
                      </group>
                     <footer>
                         <button name="set_sin_cred" string="Confirmar" type="object" class="oe_highlight"/>
-
-
+<!--                        or-->
+<!--                        <button special="cancel" string="Cancel"/>-->
                     </footer>
                 </form>
             </field>
@@ -25,4 +25,3 @@
 
     </data>
 </odoo>
-

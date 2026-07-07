@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data noupdate="0">
 	  
-	
+	<!-- Estados -->
 	<record id="est_ve_AMA" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">AMA</field>
@@ -12,7 +12,7 @@
 	<record id="est_ve_ANZ" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">ANZ</field>
-		<field name="name">AnzoÃ¡tegui</field>
+		<field name="name">Anzoátegui</field>
 	</record>
 	
 	<record id="est_ve_APU" model="res.country.state">
@@ -36,7 +36,7 @@
 	<record id="est_ve_BOL" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">BOL</field>
-		<field name="name">BolÃ­var</field>
+		<field name="name">Bolívar</field>
 	</record>
 	
 	<record id="est_ve_CAR" model="res.country.state">
@@ -66,13 +66,13 @@
 	<record id="est_ve_FAL" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">FAL</field>
-		<field name="name">FalcÃ³n</field>
+		<field name="name">Falcón</field>
 	</record>
 
 	<record id="est_ve_GUA" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">GUA</field>
-		<field name="name">GuÃ¡rico</field>
+		<field name="name">Guárico</field>
 	</record>
 
 	<record id="est_ve_LAR" model="res.country.state">
@@ -84,7 +84,7 @@
 	<record id="est_ve_MER" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">MER</field>
-		<field name="name">MÃ©rida</field>
+		<field name="name">Mérida</field>
 	</record>
 	
 	<record id="est_ve_MIR" model="res.country.state">
@@ -120,7 +120,7 @@
 	<record id="est_ve_TAC" model="res.country.state">
 		<field name='country_id' model='res.country' search="[('code','=','VE')]"/>
 		<field name="code">TAC</field>
-		<field name="name">TÃ¡chira</field>
+		<field name="name">Táchira</field>
 	</record>
 
 	<record id="est_ve_TRU" model="res.country.state">
@@ -155,4 +155,3 @@
 
 	</data>
 </openerp>
-

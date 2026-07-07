@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <template>
     <t t-name="account_reports.AccountReportFilterDate" owl="1">
         <Dropdown togglerClass="'btn btn-secondary'">
@@ -140,7 +140,7 @@
                         As of
                     </label>
 
-                    <div> 
+                    <div> <!-- This div is needed for the 'justify-content_between' on the parent -->
                         <DateTimeInput
                             type="'date'"
                             value="dateTo('date')"
@@ -182,4 +182,3 @@
 
     </t>
 </template>
-

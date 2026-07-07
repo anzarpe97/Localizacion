@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
 
@@ -36,7 +36,7 @@
 
                             <h5 ><b>Nombre de la Empresa:</b> <span t-esc="o.name"/></h5>
                            <h5><b>RIF.:&amp;nbsp;</b><span t-field="o.partner_id.rif" t-if="o.partner_id.rif"/></h5>
-                            <h5 ><b>DirecciÃ³n de la Empresa:</b> <span t-esc="street"/><span t-esc="o.street2"/></h5>
+                            <h5 ><b>Dirección de la Empresa:</b> <span t-esc="street"/><span t-esc="o.street2"/></h5>
                         </div>
                         <div class="text-center">
                             <h2><b>LIBRO DE VENTAS</b></h2>
@@ -49,35 +49,35 @@
                     <thead style="font-size:10px;">
                         <tr class="text-center">
                             <th colspan="15"></th>
-							<th colspan="9" class="text-center table-bordered" style="background-color:#fff5af;color:#000000; border: 1px solid #000000;"><p>Ventas Internas Ã³ ExportaciÃ³n Gravadas</p></th>
+							<th colspan="9" class="text-center table-bordered" style="background-color:#fff5af;color:#000000; border: 1px solid #000000;"><p>Ventas Internas ó Exportación Gravadas</p></th>
                             <th></th>
                         </tr>
                         <tr class="text-center table-bordered" style="background-color:#fff5af; height:60px; border: 1px solid #000000;">
         	                <th class="text-center table-bordered" style="width:20px; vertical-align: middle; border: 1px solid #000000;">Nro. Op.</th>
-                             
+                             <!-- <th class="text-center table-bordered" style="width:20px; vertical-align: middle; border: 1px solid #000000;">Nro. Reporte Z</th> -->
         	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Fecha Documento</th>
         	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">RIF</th>
-        	                <th class="text-center table-bordered" style="width:300px; vertical-align: middle; border: 1px solid #000000;">Nombre Ã³ RazÃ³n Social</th>
+        	                <th class="text-center table-bordered" style="width:300px; vertical-align: middle; border: 1px solid #000000;">Nombre ó Razón Social</th>
                             <th class="text-center table-bordered" style="width:150px; vertical-align: middle; border: 1px solid #000000;">Tipo Prov.</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Planilla de ExportaciÃ³n</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Planilla de Exportación</th>
         	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Nro. De Factura</th>
         	                <th class="text-center table-bordered" style="width:300px; vertical-align: middle; border: 1px solid #000000;">Nro. De Control</th>
                             <th class="text-center table-bordered" style="width:300px; vertical-align: middle; border: 1px solid #000000;">Nro. Ultima Factura</th>
         	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Nro. Factura Afectada</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Nota de DÃ©bito</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Nota de CrÃ©dito</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Nota de Débito</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. Nota de Crédito</th>
         	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Tipo de Trans.</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Ventas Incluyendo IVA</th>
-        	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Ventas Internas Ã³ Exportaciones No Gravadas </th>
-        	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Ventas Internas Ã³ Exportaciones Exoneradas</th>
+        	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Ventas Internas ó Exportaciones No Gravadas </th>
+        	                <th class="text-center table-bordered" style="width:100px; vertical-align: middle; border: 1px solid #000000;">Ventas Internas ó Exportaciones Exoneradas</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Base Imponible Alicuota General</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% AlÃ­cuota General</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% Alícuota General</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Impuesto IVA Alicuota General</th>
                             <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Base Imponible Alicuota Reducida</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% AlÃ­cuota Reducida</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% Alícuota Reducida</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Impuesto IVA Alicuota Reducida</th>
                             <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Base Imponible Alicuota Adicional</th>
-        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% AlÃ­cuota Adicional</th>
+        	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">% Alícuota Adicional</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">Impuesto IVA Alicuota Adicional</th>
         	                <th class="text-center table-bordered" style="width:350px; vertical-align: middle; border: 1px solid #000000;">IVA Retenido (Comprador)</th>
         	                <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;">Nro. De Comprobante</th>
@@ -90,7 +90,7 @@
                         <t t-foreach="docs" t-as="doc">
         	            <tr style=" border: 1px solid #000000; height: 20px;" class="text-center table-bordered">
         	                    <td style=" border: 1px solid #000000;" class="text-center table-bordered"><span t-esc="contador"/></td>
-                                
+                                <!-- <td style=" border: 1px solid #000000;" class="text-center table-bordered"><span t-esc="doc['report_z']"/></td> -->
         	                    <td style=" border: 1px solid #000000;" class="text-center table-bordered"><span t-esc="doc['emission_date']"/></td>
         	                    <td style=" border: 1px solid #000000;" class="text-center table-bordered"><span t-esc="doc['partner_vat']"/></td>
         	                    <td style=" border: 1px solid #000000;" class="text-center table-bordered"><span t-esc="doc['partner_name']"/></td>
@@ -189,7 +189,7 @@
                         <td class="text-center" style="border: 1px solid #000000;padding: 5px; "><span t-esc="'{0:,.2f}'.format(a).replace(',', 'X').replace('.', ',').replace('X', '.')"/></td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid #000000;padding: 5px; ">Ventas de ExportaciÃ³n</td>
+                        <td style="border: 1px solid #000000;padding: 5px; ">Ventas de Exportación</td>
                         <td class="text-center" style="border: 1px solid #000000;padding: 5px; "><span t-esc="'{0:,.2f}'.format(a).replace(',', 'X').replace('.', ',').replace('X', '.')"/></td>
                         <td class="text-center" style="border: 1px solid #000000;padding: 5px; "><span t-esc="'{0:,.2f}'.format(a).replace(',', 'X').replace('.', ',').replace('X', '.')"/></td>
                         <td class="text-center" style="border: 1px solid #000000;padding: 5px; "><span t-esc="'{0:,.2f}'.format(a).replace(',', 'X').replace('.', ',').replace('X', '.')"/></td>

@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
 
@@ -36,7 +36,7 @@
                         <field name="partner_vat"/>
                     </group>
                     <newline/>
-                    <separator string="Concepto de retenciÃ³n de ISLR" colspan="6"/>
+                    <separator string="Concepto de retención de ISLR" colspan="6"/>
                     <newline/>
                     <group col="4" colspan="4">
                         <field name="concept_id" colspan="4"/>
@@ -51,9 +51,9 @@
                         <group col="4" colspan="4">
                             <field name="account_invoice_line_id" colspan="4" invisible="type != 'invoice'"/>
                             <field name="date_ret" colspan="2" required='1'/>
-                            
+                            <!--field name="period_id" colspan="2" required='1'/-->
                             <field name="invoice_number" />
-                            
+                            <!-- <field name="correlative" /> -->
                         </group>
                     </group>
                     <newline/>
@@ -73,7 +73,7 @@
             <field name="name">account.wh.islr.xml_tree</field>
             <field name="model">account.wh.islr.xml</field>
             <field name="arch" type="xml">
-                <tree string="RetenciÃ³n de lÃ­neas para XML">
+                <tree string="Retención de líneas para XML">
                     <field name="name"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
@@ -87,7 +87,7 @@
             <field name="name">account.wh.islr.xml_form</field>
             <field name="model">account.wh.islr.xml</field>
             <field name="arch" type="xml">
-                <form string="RetenciÃ³n de lÃ­neas para XML">
+                <form string="Retención de líneas para XML">
                     <header>
                         <button name="action_confirm1" string="Confirmar" invisible="state != 'draft'" type="object"  class="oe_highlight"/>
                         <button name="action_done1" string="Validar XML" invisible="state != 'confirmed'" type="object"  class="oe_highlight"/>
@@ -108,9 +108,9 @@
                             </group>
 
                         </group>
-                        
+                        <!--field name="period_id" widget="selection"/-->
                         <notebook>
-                            <page string="LÃ­neas de retenciÃ³n de facturas">
+                            <page string="Líneas de retención de facturas">
                                 <field name="invoice_xml_ids" nolabel="1" widget="many2many">
                                     <tree string="Detalle del XML">
                                         <field name="partner_vat"/>
@@ -134,7 +134,7 @@
                                     </group>
                                  </group>
                              </page>
-                             <page string="LÃ­neas de retenciÃ³n de empleados">
+                             <page string="Líneas de retención de empleados">
                                  <group>
                                      <group>
                                          <button
@@ -189,13 +189,13 @@
                         <separator orientation="vertical"/>
                         <field name="company_id"/>
                         <field name="user_id" select="1" widget="selection" string="Vendedor">
-
+<!--                        <filter domain="[('user_id', '=', uid)]" help="My Income Withholding"/>-->
                         </field>
                     </group>
                     <newline/>
                     <group expand="1" string="Group By...">
                         <separator orientation="vertical"/>
-
+<!--                        <filter string="State" domain="[]" context="{'group_by': 'state'}"/>-->
                     </group>
                </search>
             </field>
@@ -208,7 +208,7 @@
             <field name="binding_view_types">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_generate_xml_filter"/>
-            <field name="help">Con esta opciÃ³n, puede crear y administrar la generaciÃ³n del archivo xml, requerido mensualmente para el SENIAT como agente especial de retenciÃ³n de ISLR</field>
+            <field name="help">Con esta opción, puede crear y administrar la generación del archivo xml, requerido mensualmente para el SENIAT como agente especial de retención de ISLR</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="action_xml_islr_tree_1">
@@ -238,4 +238,3 @@
 
     </data>
 </odoo>
-

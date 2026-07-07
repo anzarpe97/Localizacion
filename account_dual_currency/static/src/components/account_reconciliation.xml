@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <templates xml:space="preserve">
 
@@ -31,7 +31,7 @@
 
     <t t-name="reconciliation.line.mv_line">
         <tr t-if="line.display !== false" t-attf-class="mv_line #{line.is_liquidity_line ? ' already_reconciled' : ''} #{line.__invalid ? 'invalid' : ''} #{line.is_tax ? 'is_tax' : ''}" t-att-data-line-id="line.id" t-att-data-selected="selected">
-            <td class="cell_account_code"><t t-esc="line.account_code"/>&#8203;</td> 
+            <td class="cell_account_code"><t t-esc="line.account_code"/>&#8203;</td> <!-- zero width space to make empty lines the height of the text -->
             <td class="cell_due_date">
                 <t t-if="typeof(line.id) != 'number' &amp;&amp; line.id">
                     <span class="badge text-bg-secondary">New</span>
@@ -64,4 +64,3 @@
     </t>
 
 </templates>
-

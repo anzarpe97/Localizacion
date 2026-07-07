@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <template>
     <t t-name="DualCurrencyFilters"
        t-inherit="account_reports.AccountReportFiltersCustomizable"  t-inherit-mode="extension" owl="1" >
        <xpath expr="//div[@id='filter_extra_options']/.." position="inside">
             <div id="search_template_currency_dif">
-                
+                <!--<t t-call="account_dual_currency.search_template_currency_dif_choose"/>-->
                 <Dropdown togglerClass="'btn btn-secondary'">
                     <t t-set-slot="toggler">
                         <i class="fa fa-money me-1"/>

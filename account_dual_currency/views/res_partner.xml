@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="extra_partner_dual_currency" model="ir.ui.view">
@@ -15,7 +15,7 @@
             </field>
         </record>
 
-        
+        <!--   Heredar la vista account_followup.customer_statements_form_view     -->
         <record id="extra_partner_dual_currency_customer_statements_form_view" model="ir.ui.view">
             <field name="name">Extra partner DualCurrency customer_statements_form_view</field>
             <field name="model">res.partner</field>

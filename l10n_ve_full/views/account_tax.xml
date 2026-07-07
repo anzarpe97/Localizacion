@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
     <data>
         <record id="extra_account_tax_venezuela" model="ir.ui.view">
@@ -16,7 +16,8 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
                  <xpath expr="//field[@name='analytic']" position="before">
-                     
+                     <!-- <field name="wh_vat_collected_account_id"/>
+                     <field name="wh_vat_paid_account_id"/> -->
                  </xpath>
             </field>
         </record>

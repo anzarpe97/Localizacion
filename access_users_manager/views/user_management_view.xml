@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- FORM VIEW (user.management) -->
+    <record id="user_access_manager_form" model="ir.ui.view">
+        <field name="name">user.access.form</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <widget name="web_ribbon" title="Deactivated" bg_color="bg-danger" invisible="active" />
+                        <field name="active" invisible="1" />
+                        <button name="access_view_profile_users" string="Usuarios" type="object" class="oe_stat_button" icon="fa-users">
+                            <div class="o_stat_info">
+                                <field name="access_users_count" class="o_stat_value" />
+                                <span class="o_stat_text">Usuarios</span>
+                            </div>
+                        </button>
+                        <button name="access_view_profile_access_rights" string="Derechos de Accesos" type="object" class="oe_stat_button" icon="fa-book">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Derechos de Accesos</span>
+                            </div>
+                        </button>
+                        <button name="access_view_profile_record_rules" string="Reglas de Registros" type="object" class="oe_stat_button" icon="fa-server">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Reglas de Registros</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <span>
+                            <h1>
+                                <field name="name" nolabel="1" default_focus="1" required="1" />
+                            </h1>
+                        </span>
+                        <group />
+                        <group>
+                            <field name="access_company_ids" widget="many2many_tags" options="{'no_create': True, 'color_field': 'color'}" />
+                            <field name="access_profile_ids" widget="many2many_tags" options="{'no_create': True, 'color_field': 'color'}" />
+                            <field name="access_profile_based_menu" invisible="1" />
+                            <field name="access_user_ids" invisible="1" widget="many2many_tags" options="{'no_create': True}" domain="[('company_ids', 'in', access_company_ids)]" />
+                            <field name="access_user_rel_ids" invisible="1" widget="many2many_tags" options="{'no_create': True}" />
+                        </group>
+                        <group>
+                            <field name="is_profile" invisible="1" />
+                            <field name="access_readonly" string="Profile System Readonly" invisible="not is_profile" />
+                            <field name="access_hide_chatter" string="Disable Chatter" invisible="not is_profile" />
+                            <field name="access_disable_debug_mode" string="Disable Debug Mode" invisible="not is_profile" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ocultar cualquier menú">
+                            <field name="access_hide_menu_ids" />
+                        </page>
+                        <page string="Ocultar cualquier botón o pestaña">
+                            <field name="access_button_tab_access_line">
+                                <tree editable="bottom">
+                                    <field name="access_profile_domain_model" invisible="1" />
+                                    <field name="access_model_id" string="Model" options="{'no_create': True}" />
+                                    <field name="access_hide_button_ids" widget="many2many_tags" domain="[('access_model_id', '=', access_model_id),('access_type','=','button')]" options="{'no_create': True}" />
+                                    <field name="access_hide_tab_ids" widget="many2many_tags" domain="[('access_model_id', '=', access_model_id), ('access_type', '=', 'page')]" options="{'no_create': True}" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Ocultar cualquier filtro o agrupar por">
+                            <field name="access_hide_filters_groups_line">
+                                <tree editable="bottom">
+                                    <field name="access_profile_domain_model" invisible="1" />
+                                    <field name="access_model_id" options="{'no_create': True}" />
+                                    <field name="access_hide_filter_ids" widget="many2many_tags" domain="[('access_model_id','=',access_model_id),('access_type','=','filter')]" options="{'no_create': True}" />
+                                    <field name="access_hide_group_ids" widget="many2many_tags" domain="[('access_model_id','=',access_model_id),('access_type','=','group')]" options="{'no_create': True}" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Editar acceso al campo">
+                            <field name="access_hide_field_line">
+                                <tree editable="bottom">
+                                    <field name="access_profile_domain_model" invisible="1" />
+                                    <field name="access_model_id" required="1" options="{'no_create': True}" />
+                                    <field name="access_field_id" widget="many2many_tags" options="{'no_create': True}" domain="[('model_id','=',access_model_id)]" />
+                                    <field name="access_field_readonly" />
+                                    <field name="access_field_invisible" />
+                                    <field name="access_field_required" />
+                                    <field name="access_field_external_link" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Editar Accesos al Modelo">
+                            <field name="access_model_access_line">
+                                <tree editable="bottom">
+                                    <field name="access_profile_domain_model" invisible="1" />
+                                    <field name="access_model_id" required="1" options="{'no_create': True}" />
+                                    <field name="access_model_readonly" />
+                                    <field name="access_hide_create" />
+                                    <field name="access_hide_edit" />
+                                    <field name="access_hide_delete" />
+                                    <field name="access_hide_archive_unarchive" />
+                                    <field name="access_hide_duplicate" />
+                                    <field name="access_hide_export" />
+                                    <field name="access_report_action_ids" widget="many2many_tags" options="{'no_create': True}" />
+                                    <field name="access_server_action_ids" widget="many2many_tags" options="{'no_create': True}" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Editar Accesos al Dominio">
+                            <field name="access_domain_access_line">
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="access_profile_domain_model" invisible="1" />
+                                                <field name="access_model_id" required="1" options="{'no_create': True}" />
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="access_apply_domain" />
+                                            <field name="access_model_name" invisible="1" />
+                                            <field name="access_domain" widget="domain" options="{'model': 'access_model_name', 'in_dialog': True}" invisible="not access_apply_domain" />
+                                        </group>
+                                    </sheet>
+                                </form>
+                                <tree>
+                                    <field name="access_profile_domain_model" invisible="1" />
+                                    <field name="access_model_id" />
+                                    <field name="access_domain" string="Domain" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- LIST VIEW (user.management) -->
+    <record id="user_access_manager_list_view" model="ir.ui.view">
+        <field name="name">user.access.manager.list.view</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active">
+                <field name="name" />
+                <field name="create_uid" />
+                <field name="create_date" />
+                <field name="access_profile_ids" widget="many2many_tags" />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+    <!-- SEARCH VIEW (user.management) -->
+    <record id="view_user_manager_search" model="ir.ui.view">
+        <field name="name">user.management.search</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="all_records" string="Todo" domain="[('active','in',[False, True])]" />
+            </search>
+        </field>
+    </record>
+    <!-- ACTION (user.management) -->
+    <record id="action_user_access_manager" model="ir.actions.act_window">
+        <field name="name">Access manager</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">user.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"search_default_all_records": 1}</field>
+    </record>
+    <!-- MENÚS ELIMINADOS (movidos a menu.xml) -->
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- FORM VIEW -->
+    <record id="view_res_user_profiles_form" model="ir.ui.view">
+        <field name="name">res.user.profiles.form</field>
+        <field name="model">user.profiles</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="access_action_create_user" string="Crear Usuario" type="object" class="oe_stat_button" icon="fa-user" />
+                        <button name="access_show_model_access_ids" type="object" class="oe_stat_button" icon="fa-book">
+                            <field name="access_model_access_count" string="Derechos de Acceso" widget="statinfo" />
+                        </button>
+                        <button name="access_show_rule_ids" type="object" class="oe_stat_button" icon="fa-server">
+                            <field name="access_rules_count" string="Reglas de Registro" widget="statinfo" />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="access_user_ids" options="{'no_create': True}" widget="many2many_tags" />
+                        <field name="access_setting_id" invisible="1" />
+                        <field name="color" widget="color_picker" />
+                    </group>
+                    <notebook>
+                        <page string="Grupos">
+                            <field name="implied_ids" nolabel="1" domain="[('id', 'not in', [access_setting_id])]" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- FORM INHERIT -->
+    <record id="user_profiles_form_inherit" model="ir.ui.view">
+        <field name="name">user.profiles.form.inherit</field>
+        <field name="model">user.profiles</field>
+        <field name="inherit_id" ref="access_users_manager.view_res_user_profiles_form" />
+        <field name="arch" type="xml">
+            <field position="after" name="implied_ids" />
+        </field>
+    </record>
+    <!-- LIST VIEW -->
+    <record id="view_res_user_profiles_list" model="ir.ui.view">
+        <field name="name">user.profiles.list.view</field>
+        <field name="model">user.profiles</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="access_user_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <!-- SEARCH VIEW -->
+    <record id="view_res_users_profile_search" model="ir.ui.view">
+        <field name="name">user.profiles.search.view</field>
+        <field name="model">user.profiles</field>
+        <field name="arch" type="xml">
+            <search string="Profiles">
+                <field name="name" />
+                <field name="access_user_ids" />
+                <field name="implied_ids" />
+            </search>
+        </field>
+    </record>
+    <!-- ACTION (ID QUE BUSCAN LOS MENÚS) -->
+    <record id="action_res_user_profiles_tree" model="ir.actions.act_window">
+        <field name="name">User Profile</field>
+        <field name="res_model">user.profiles</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_res_users_profile_search" />
+        <field name="view_id" ref="view_res_user_profiles_list" />
+    </record>
+</odoo>

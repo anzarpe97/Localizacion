@@ -250,17 +250,18 @@ class AccountMove(models.Model):
                 line._compute_amount_residual_usd()
             rec.verificar_pagos = True
 
-    @api.depends('invoice_date', 'company_id')
+    @api.depends('invoice_date', 'company_id', 'currency_id_dif')
     def _compute_date(self):
         res = super(AccountMove, self)._compute_date()
         for rec in self:
             if rec.move_type in ('out_refund', 'in_refund'):
                 _logger.info("[DUAL] _compute_date(): Skipping tax_today recalc for refund %s (type: %s)", rec.id, rec.move_type)
                 continue
-            if rec.invoice_date and rec.company_id.currency_id_dif and not rec.tax_today_edited:
-                new_rate_ids = self.env.company.currency_id_dif._get_rates(self.env.company, rec.invoice_date)
-                if new_rate_ids:
-                    new_rate = 1 / new_rate_ids[self.env.company.currency_id_dif.id]
+            currency_dif = rec.currency_id_dif or rec.company_id.currency_id_dif
+            if rec.invoice_date and currency_dif and not rec.tax_today_edited:
+                new_rate_ids = currency_dif._get_rates(rec.company_id, rec.invoice_date)
+                if new_rate_ids and currency_dif.id in new_rate_ids:
+                    new_rate = 1 / new_rate_ids[currency_dif.id] if new_rate_ids[currency_dif.id] else 1.0
                     rec.tax_today = new_rate
 
     def _fecha_para_tax_today(self, vals=None):
@@ -278,7 +279,14 @@ class AccountMove(models.Model):
         else:
             fecha_str = str(fecha)
         company = company or self.env.company
-        currency = company.currency_id_dif or self.env.ref('base.USD')
+        currency = self.currency_id_dif or company.currency_id_dif or self.env.ref('base.USD')
+        
+        # Try to use robust _get_rates first
+        new_rate_ids = currency._get_rates(company, fecha)
+        if new_rate_ids and currency.id in new_rate_ids:
+            rate = new_rate_ids[currency.id]
+            return 1 / rate if rate else 1.0
+            
         tasa = self.env['res.currency.rate'].search([
             ('currency_id', '=', currency.id),
             ('name', '=', fecha_str),
@@ -394,6 +402,16 @@ class AccountMove(models.Model):
     def _same_currency(self):
         self.same_currency = self.currency_id == self.env.company.currency_id
 
+
+    @api.onchange('currency_id_dif')
+    def _onchange_currency_id_dif(self):
+        for rec in self:
+            if rec.currency_id_dif:
+                rec.tax_today_edited = False
+                fecha = rec._fecha_para_tax_today()
+                new_rate_ids = rec.currency_id_dif._get_rates(rec.company_id, fecha or fields.Date.context_today(rec))
+                if new_rate_ids and rec.currency_id_dif.id in new_rate_ids:
+                    rec.tax_today = 1 / new_rate_ids[rec.currency_id_dif.id] if new_rate_ids[rec.currency_id_dif.id] else 1.0
 
     @api.onchange('tax_today')
     def _onchange_tax_today(self):

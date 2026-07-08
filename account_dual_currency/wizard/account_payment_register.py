@@ -182,11 +182,13 @@ class AccountPaymentRegister(models.TransientModel):
             w.amount_expected = final_amount_expected
             w.amount_diff = fx_bs # Este es el valor que refleja la diferencia cambiaria
 
-    @api.onchange("payment_date")
+    @api.onchange("payment_date", "currency_id_dif")
     def onchange_date_change_tax_today(self):
-        currency_USD = self.env['res.currency'].search([('name', '=', 'USD')], limit=1)
-        company_currency = self.env.company.currency_id
-        self.tax_today = company_currency._get_conversion_rate(currency_USD, company_currency, self.env.company, self.payment_date)
+        currency_dif = self.currency_id_dif or self.company_id.currency_id_dif or self.env['res.currency'].search([('name', '=', 'USD')], limit=1)
+        if currency_dif:
+            new_rate_ids = currency_dif._get_rates(self.company_id, self.payment_date or fields.Date.context_today(self))
+            if new_rate_ids and currency_dif.id in new_rate_ids:
+                self.tax_today = 1 / new_rate_ids[currency_dif.id] if new_rate_ids[currency_dif.id] else 1.0
 
     # @api.depends('currency_id')
     # def _get_default_igtf(self):
@@ -249,7 +251,8 @@ class AccountPaymentRegister(models.TransientModel):
 
             # --- Lógica IGTF/Final de VEF (se mantiene para la cadena de onchange) ---
             if wizard.aplicar_igtf:
-                if wizard.currency_id.name == wizard.company_id.currency_id_dif.name:
+                ref_currency = wizard.currency_id_dif or wizard.company_id.currency_id_dif
+                if ref_currency and wizard.currency_id.name == ref_currency.name:
                     wizard.mount_igtf = wizard.amount * wizard.igtf_divisa_porcentage / 100
                     wizard.amount_total_pagar = wizard.mount_igtf + wizard.amount
                 else:
@@ -319,12 +322,13 @@ class AccountPaymentRegister(models.TransientModel):
         # 1. Obtén la fecha de pago (o usa hoy si no está seteada)
         payment_date = self.payment_date or fields.Date.context_today(self)
 
-        # 2. Busca el currency USD y la tasa más reciente válida según fecha y compañía
+        # 2. Busca la tasa más reciente válida para la moneda de referencia según fecha y compañía
         usd = self.env.ref('base.USD', raise_if_not_found=False) or self.env['res.currency'].search([('name', '=', 'USD')], limit=1)
+        currency_id_dif = lines[0].currency_id_dif or company.currency_id_dif or usd
         tax_today = 1.0
-        if usd:
+        if currency_id_dif:
             rate_obj = self.env['res.currency.rate'].search([
-                ('currency_id', '=', usd.id),
+                ('currency_id', '=', currency_id_dif.id),
                 ('company_id', '=', company.id),
                 ('name', '<=', payment_date),
             ], order='name desc', limit=1)
@@ -334,7 +338,6 @@ class AccountPaymentRegister(models.TransientModel):
         # 3. tax_invoice sigue siendo la tasa guardada en la factura (si existe)
         tax_invoice = getattr(lines[0].move_id, 'tax_today', 1.0) or 1.0
 
-        currency_id_dif = lines[0].currency_id_dif
         amount_residual_usd = lines[0].move_id.amount_residual_usd
         source_amount = abs(sum(lines.mapped('amount_residual'))) if key_values['currency_id'] == company.currency_id.id else abs(sum(lines.mapped('amount_residual_currency')))
         if key_values['currency_id'] == company.currency_id.id:
@@ -359,8 +362,9 @@ class AccountPaymentRegister(models.TransientModel):
 
     def _create_payment_vals_from_wizard(self, batch_result):
         # Determinar tasa correcta según la moneda del pago
-        if self.currency_id == self.company_id.currency_id_dif:
-            # Pago en USD → usar tasa de la factura
+        ref_currency = self.currency_id_dif or self.company_id.currency_id_dif
+        if ref_currency and self.currency_id == ref_currency:
+            # Pago en Divisa de Referencia (USD, EUR, etc.) → usar tasa de la factura
             tasa_aplicada = self.tax_invoice
         else:
             # Pago en VEF u otra moneda → usar tasa actual

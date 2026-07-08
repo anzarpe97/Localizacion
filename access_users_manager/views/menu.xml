@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menú raíz dentro de Ajustes / Usuarios -->
+    <menuitem id="menu_user_profiles"
+              name="User Access Manager"
+              sequence="15"
+              web_icon="access_users_manager,static/description/icon.png"
+              groups="base.group_system"/>
+
+    <!-- Submenú: gestión de perfiles -->
+    <menuitem id="menu_user_profiles_tree"
+              name="Profile manager"
+              parent="menu_user_profiles"
+              action="access_users_manager.action_user_access_manager"
+              sequence="20"
+              groups="base.group_system"/>
+
+    <!-- Submenú: user management -->
+    <menuitem id="menu_user_manager"
+              name="User Profiles"
+              parent="menu_user_profiles"
+              action="access_users_manager.action_res_user_profiles_tree"
+              sequence="30"
+              groups="base.group_system"/>
+
+</odoo>

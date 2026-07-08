@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="cron_update_users" model="ir.cron">
+        <field name="name">Update user profiles</field>
+        <field name="interval_number">3</field>
+        <field name="interval_type">hours</field>
+
+        <!-- numbercall eliminado (no existe en Odoo 18) -->
+        <!-- doall eliminado (no existe en Odoo 18) -->
+
+        <field name="active" eval="True"/>
+
+        <field name="model_id" ref="access_users_manager.model_user_profiles"/>
+        <field name="state">code</field>
+        <field name="code">model.access_cron_update_users()</field>
+    </record>
+
+</odoo>

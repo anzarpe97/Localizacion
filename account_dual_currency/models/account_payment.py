@@ -40,6 +40,16 @@ class AccountMove(models.Model):
         copy=False
     )
 
+    @api.onchange('currency_id_dif', 'date')
+    def _onchange_currency_id_dif(self):
+        for rec in self:
+            currency_dif = rec.currency_id_dif or rec.company_id.currency_id_dif
+            if currency_dif and rec.date:
+                new_rate_ids = currency_dif._get_rates(rec.company_id, rec.date)
+                if new_rate_ids and currency_dif.id in new_rate_ids:
+                    new_rate = 1 / new_rate_ids[currency_dif.id] if new_rate_ids[currency_dif.id] else 1.0
+                    rec.tax_today = new_rate
+
     def _get_default_tasa(self):
         return self.env.company.currency_id_dif.rate
 

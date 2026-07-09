@@ -19,9 +19,7 @@
                                 <td style="width: 50%; vertical-align: top; padding-right: 10px; font-size: 9px;">
                                     <p><strong>Cliente:</strong> <t t-esc="doc.partner_id.name or ''"/></p>
                                     <p><strong>R.I.F:</strong> <t t-esc="doc.partner_id.vat or ''"/></p>
-                                    <p><strong>DOMICILIO FISCAL:</strong>
-                                        <t t-esc="(doc.partner_id.contact_address or '')[len(doc.partner_id.name):].lstrip(' ,') if doc.partner_id.name and (doc.partner_id.contact_address or '').startswith(doc.partner_id.name) else (doc.partner_id.contact_address or '')"/>
-                                    </p>
+                                    <p><strong>DOMICILIO FISCAL:</strong> <t t-esc="doc.partner_id.contact_address or ''"/></p>
                                     <p><strong>E-MAIL:</strong> <t t-esc="doc.partner_id.email or ''"/></p>
                                     <p><strong>TELÉFONO:</strong> <t t-esc="doc.partner_id.phone or ''"/></p>
                                 </td>
@@ -130,13 +128,13 @@
                         </table>
 
     
-                        <!-- Bloque de Montos en Bolívares y Euros -->
+                        <!-- Bloque de Montos en Bolívares y Dólares -->
                         <div style="position: fixed; top: 440px; width: 95%; text-align: center; font-size: 9px; border: 1px solid black; padding: 10px;">
                             <table style="width: 100%; border-collapse: collapse; font-size: 9px;">
                                 <thead>
                                     <tr>
                                         <th colspan="2" style="border-right: 1px solid black;">Monto en Bolívares (Bs.)</th>
-                                        <th colspan="2">Monto en Euros (€)</th>
+                                        <th colspan="2">Monto en Dólares (US$.)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -270,8 +268,8 @@
                                             
                                             <hr style="margin: 10px 0;" />
                                             <p style="margin: 0;">
-                                                FACTURA SEGUN CONVENIO CAMBIARIO N°1 GOE N°6.405 DE FECHA 07/09/2018. FACTURA CALCULADA A LA TASA BCV ACTUAL Bs. POR €
-                                                EURO <span t-field="doc.tax_today" t-options='{"widget": "float", "precision": 4}'/> PARA EFECTOS DEL IVA DE CONFORMIDAD CON LO ESTABLECIDO EN EL ARTICULO 116 DEL BCV.
+                                                FACTURA SEGUN CONVENIO CAMBIARIO N°1 GOE N°6.405 DE FECHA 07/09/2018. FACTURA CALCULADA A LA TASA BCV ACTUAL Bs. POR US$
+                                                DOLAR <span t-field="doc.tax_today" t-options='{"widget": "float", "precision": 4}'/> PARA EFECTOS DEL IVA DE CONFORMIDAD CON LO ESTABLECIDO EN EL ARTICULO 116 DEL BCV.
                                                 PAGARA EN BOLIVARES A LA TASA BCV DEL DIA.
                                             </p>
                                         </td>

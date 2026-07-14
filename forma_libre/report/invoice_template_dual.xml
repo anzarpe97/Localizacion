@@ -134,7 +134,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="2" style="border-right: 1px solid black;">Monto en Bolívares (Bs.)</th>
-                                        <th colspan="2">Monto en Dólares (US$.)</th>
+                                        <th colspan="2">Monto en Euros (€)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -268,8 +268,8 @@
                                             
                                             <hr style="margin: 10px 0;" />
                                             <p style="margin: 0;">
-                                                FACTURA SEGUN CONVENIO CAMBIARIO N°1 GOE N°6.405 DE FECHA 07/09/2018. FACTURA CALCULADA A LA TASA BCV ACTUAL Bs. POR US$
-                                                DOLAR <span t-field="doc.tax_today" t-options='{"widget": "float", "precision": 4}'/> PARA EFECTOS DEL IVA DE CONFORMIDAD CON LO ESTABLECIDO EN EL ARTICULO 116 DEL BCV.
+                                                FACTURA SEGUN CONVENIO CAMBIARIO N°1 GOE N°6.405 DE FECHA 07/09/2018. FACTURA CALCULADA A LA TASA BCV ACTUAL Bs. POR € EURO
+                                                <span t-field="doc.tax_today" t-options='{"widget": "float", "precision": 4}'/> PARA EFECTOS DEL IVA DE CONFORMIDAD CON LO ESTABLECIDO EN EL ARTICULO 116 DEL BCV.
                                                 PAGARA EN BOLIVARES A LA TASA BCV DEL DIA.
                                             </p>
                                         </td>
